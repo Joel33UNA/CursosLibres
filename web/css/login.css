@@ -18,19 +18,34 @@ body{
 
 h2{
     text-align: center;
-    color: white;
+    color: #1a2537;
 }
 
 .formulario{
-    background-color: dimgrey;
+    background-color: lightgray;
     padding: 30px;
+    margin: 80px;
 }
 
 .sesion{
+    text-align: center;
     width: 100%;
     padding: 15px;
+    border: 1px solid #aaa;
 }
 
 input[type = "text"], input[type = "password"]{
-    
+    font-size: 15px;
+    width: 80%;
+    padding: 10px;
+}
+
+
+.boton{
+    border: none;
+    color: white;
+    background: #1a2537;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
