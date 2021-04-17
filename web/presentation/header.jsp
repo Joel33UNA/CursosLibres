@@ -16,18 +16,10 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     </div>
     <div class="submenu">
         <ul>
-            <li>
-                <a href="../CursosLibres">Inicio</a>
-            </li>
-            <li>
-                <a href="/">Visualizar cursos</a>
-            </li>
-            <li>
-                <a href="/">Iniciar sesión</a>
-            </li>
-            <li>
-                <a href="/">Registrarse</a>
-            </li>
+            <li><a href="../CursosLibres">Inicio</a></li>
+            <li><a href="/">Visualizar cursos</a></li>
+            <li><a href="/">Iniciar sesión</a></li>
+            <li><a href="/">Registrarse</a></li>
         </ul>
     </div>
 </header>

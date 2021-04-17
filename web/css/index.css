@@ -6,7 +6,31 @@ ESTUDIANTE: JOEL ZAMORA Y DIEGO JIMÉNEZ
 PROFESOR: JOSE SÁNCHEZ SALAZAR
 */
 
-div.logo > span{ /* Accedemos a un div, que pertenece a la clase logo, que tiene un hijo span */
+div.logo span{ /* Accedemos a un div, que pertenece a la clase logo, que tiene un hijo span */
     font-size: 30px;
     font: sans-serif;
+}
+
+div.submenu ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: dimgrey;
+}
+
+div.submenu li{
+    float: left;
+}
+
+div.submenu ul li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+}
+
+div.submenu ul li a:hover{
+    background-color: black;
 }
