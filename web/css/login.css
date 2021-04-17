@@ -1,0 +1,36 @@
+/*
+UNIVERSIDAD NACIONAL DE COSTA RICA
+EIF-209  -  PROGRAMACIÓN IV
+PROYECTO I
+ESTUDIANTE: JOEL ZAMORA Y DIEGO JIMÉNEZ
+PROFESOR: JOSE SÁNCHEZ SALAZAR
+*/
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font: sans-serif;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h2{
+    text-align: center;
+    color: white;
+}
+
+.formulario{
+    background-color: dimgrey;
+    padding: 30px;
+}
+
+.sesion{
+    width: 100%;
+    padding: 15px;
+}
+
+input[type = "text"], input[type = "password"]{
+    
+}

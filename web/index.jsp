@@ -10,6 +10,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="css/header.css" rel="stylesheet" type="text/css"/> <%-- incluimos la hoja de cascada header.css --%>
         <link href="css/index.css" rel="stylesheet" type="text/css"/> <%-- incluimos la hoja de cascada index.css --%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>cursoslibres.com</title>
@@ -17,6 +18,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     <body>
         <%@ include file="/presentation/header.jsp" %> <%-- incluimos el archivo cabecera header.jsp --%>
         <h3>¡Cursos libres para todos!</h3>
+        
         <%@ include file="/presentation/footer.jsp" %> <%-- incluimos el archivo cabecera footer.jsp --%>
     </body>
 </html>
