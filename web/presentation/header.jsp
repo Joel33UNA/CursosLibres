@@ -18,7 +18,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <ul>
             <li><a href="../CursosLibres">Inicio</a></li>
             <li><a href="/">Visualizar cursos</a></li>
-            <li><a href="/">Iniciar sesión</a></li>
+            <li><a href="login/login.jsp">Iniciar sesión</a></li>
             <li><a href="/">Registrarse</a></li>
         </ul>
     </div>

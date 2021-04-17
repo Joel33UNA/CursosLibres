@@ -7,14 +7,16 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 */
 
 div.logo span{ /* Accedemos a un div, que pertenece a la clase logo, que tiene un hijo span */
+    margin-left: 10px;
     font-size: 30px;
     font: sans-serif;
 }
 
 div.submenu ul{
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin-top: 20px;    
+    margin-bottom: 20px;
+    padding: 0px;
     overflow: hidden;
     background-color: dimgrey;
 }

@@ -17,5 +17,6 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     <body>
         <%@ include file="/presentation/header.jsp" %> <%-- incluimos el archivo cabecera header.jsp --%>
         <h3>¡Cursos libres para todos!</h3>
+        <%@ include file="/presentation/footer.jsp" %> <%-- incluimos el archivo cabecera footer.jsp --%>
     </body>
 </html>
