@@ -1,0 +1,12 @@
+/*
+UNIVERSIDAD NACIONAL DE COSTA RICA
+EIF-209  -  PROGRAMACIÓN IV
+PROYECTO I
+ESTUDIANTE: JOEL ZAMORA Y DIEGO JIMÉNEZ
+PROFESOR: JOSE SÁNCHEZ SALAZAR
+*/
+
+div.logo > span{ /* Accedemos a un div, que pertenece a la clase logo, que tiene un hijo span */
+    font-size: 30px;
+    font: sans-serif;
+}
