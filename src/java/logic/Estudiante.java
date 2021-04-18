@@ -9,58 +9,47 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 package logic;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Estudiante extends Usuario {
-    private String nombre;
-    private String correo;
-    private String telefono;
-    private List<EstudianteGrupo> grupos;
-    
-    public Estudiante(){
-        super();
-        this.nombre = "";
-        this.correo = "";
-        this.telefono = "";
-        this.grupos = null;
-    }
-    
-    public Estudiante(String id, String nombre, String correo, String telefono, List<EstudianteGrupo> grupos){
-        super(id, "", "");
-        this.nombre = nombre;
-        this.correo = correo;
-        this.telefono = telefono;
-        this.grupos = grupos;
+    private List<GrupoEstudiante> grupos;
+
+    public Estudiante() {
     }
 
-    public List<EstudianteGrupo> getEstudianteGrupos() {
+    public Estudiante(String id, String nombre, String rol, String clave, String correo, long telefono) {
+        super(id, nombre, rol, clave, correo, telefono);
+    }
+
+    public List<GrupoEstudiante> getGrupos() {
         return grupos;
     }
 
-    public void setEstudianteGrupos(List<EstudianteGrupo> grupos) {
+    public void setGrupos(List<GrupoEstudiante> grupos) {
         this.grupos = grupos;
     }
 
-    public String getNombre() {
-        return nombre;
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Estudiante other = (Estudiante) obj;
+        if (!Objects.equals(this.grupos, other.grupos)) {
+            return false;
+        }
+        return true;
     }
 }

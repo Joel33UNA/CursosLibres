@@ -15,9 +15,9 @@ public class Grupo {
     private String id;
     private String horario;
     private Curso curso;
-    private EstudianteGrupo matricula;
+    private GrupoEstudiante matricula;
 
-    public Grupo(String id, String horario, Curso curso, EstudianteGrupo matricula) {
+    public Grupo(String id, String horario, Curso curso, GrupoEstudiante matricula) {
         this.id = id;
         this.horario = horario;
         this.curso = curso;
@@ -55,11 +55,11 @@ public class Grupo {
         this.curso = curso;
     }
 
-    public EstudianteGrupo getMatricula() {
+    public GrupoEstudiante getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(EstudianteGrupo matricula) {
+    public void setMatricula(GrupoEstudiante matricula) {
         this.matricula = matricula;
     }
 

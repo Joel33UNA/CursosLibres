@@ -18,7 +18,7 @@ div.submenu ul{
     margin-bottom: 20px;
     padding: 0px;
     overflow: hidden;
-    background-color: dimgrey;
+    background-color: darkred;
 }
 
 div.submenu li{
@@ -27,7 +27,7 @@ div.submenu li{
 
 div.submenu ul li a{
     display: block;
-    color: white;
+    color: bisque;
     text-align: center;
     padding: 15px;
     text-decoration: none;
@@ -35,4 +35,14 @@ div.submenu ul li a{
 
 div.submenu ul li a:hover{
     background-color: black;
+}
+
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: darkred;
+  color: bisque;
+  text-align: center;
 }
