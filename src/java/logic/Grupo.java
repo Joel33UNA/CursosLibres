@@ -12,30 +12,33 @@ package logic;
 import java.util.Objects;
 
 public class Grupo {
-    private String id;
+    private int id;
     private String horario;
     private Curso curso;
     private GrupoEstudiante matricula;
+    private Profesor profesor;
 
-    public Grupo(String id, String horario, Curso curso, GrupoEstudiante matricula) {
+    public Grupo(int id, String horario, Curso curso, GrupoEstudiante matricula, Profesor profesor) {
         this.id = id;
         this.horario = horario;
         this.curso = curso;
         this.matricula = matricula;
+        this.profesor = profesor;
     }
     
     public Grupo() {
-        this.id = " ";
+        this.id = 0;
         this.horario = " ";
         this.curso = null;
         this.matricula = null;
+        this.profesor = null;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -59,13 +62,21 @@ public class Grupo {
         return matricula;
     }
 
+    public Profesor getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+
     public void setMatricula(GrupoEstudiante matricula) {
         this.matricula = matricula;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 7;
         return hash;
     }
 
@@ -93,6 +104,11 @@ public class Grupo {
         if (!Objects.equals(this.matricula, other.matricula)) {
             return false;
         }
+        if (!Objects.equals(this.profesor, other.profesor)) {
+            return false;
+        }
         return true;
-    }    
+    }
+
+    
 }
