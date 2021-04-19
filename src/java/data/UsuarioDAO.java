@@ -21,7 +21,7 @@ import logic.Usuario;
 public class UsuarioDAO {
     
     public Usuario read(String id, String clave) throws Exception{
-        String sql="select * from Usuario where id=? and clave=%s";
+        String sql="select * from usuarios where id=%s and clave=%s";
         sql = String.format(sql, id, clave);
         PreparedStatement stm = Connection.instance().prepareStatement(sql);
         ResultSet rs =  Connection.instance().executeQuery(stm);           
@@ -29,7 +29,20 @@ public class UsuarioDAO {
             return from(rs);
         }
         else{
-            throw new Exception ("Usuario no Existe");
+            throw new Exception ("¡Error!");
+        }
+    }
+    
+    public Usuario readUsuario(String id) throws Exception{
+        String sql = "select* from usuarios where id=%s";
+        sql = String.format(sql, id);
+        PreparedStatement stm = Connection.instance().prepareStatement(sql);
+        ResultSet rs = Connection.instance().executeQuery(stm);
+        if(rs.next()){
+            return from(rs);
+        }
+        else{
+            throw new Exception("Usuario no existe");
         }
     }
     

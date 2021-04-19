@@ -10,10 +10,12 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="css/header.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Administrador</title>
     </head>
     <body>
         <%@ include file="/presentation/header.jsp" %>
+        <%@ include file="/presentation/footer.jsp" %>
     </body>
 </html>
