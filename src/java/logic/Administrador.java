@@ -11,9 +11,6 @@ package logic;
     public class Administrador extends Usuario {
 
     public Administrador() {
-    }
-
-    public Administrador(String id, String nombre, String rol, String clave, String correo, long telefono) {
-        super(id, nombre, rol, clave, correo, telefono);
+        super();
     }
 }

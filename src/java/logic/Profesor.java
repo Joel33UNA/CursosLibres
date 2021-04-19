@@ -11,9 +11,6 @@ package logic;
 public class Profesor extends Usuario {
 
     public Profesor() {
-    }
-
-    public Profesor(String id, String nombre, String rol, String clave, String correo, long telefono) {
-        super(id, nombre, rol, clave, correo, telefono);
+        super();
     }
 }
