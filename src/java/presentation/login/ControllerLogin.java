@@ -73,7 +73,12 @@ public class ControllerLogin extends HttpServlet {
         try{
             Usuario usuario = this.validarCredenciales(model.getUsuario());
             session.setAttribute("usuario", usuario);
-            return "/presentation/administrador/show";
+            switch(usuario.getRol()){
+                case "administrador": return "/presentation/administrador/show";
+                case "profesor": return "";
+                case "estudiante": return "";
+                default: return "";
+            }
         }
         catch(Exception e){
             Map<String, String> errores = new HashMap<>();
