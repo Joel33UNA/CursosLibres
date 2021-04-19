@@ -42,7 +42,7 @@ public class UsuarioDAO {
             return from(rs);
         }
         else{
-            throw new Exception("Usuario no existe");
+            return null;
         }
     }
     

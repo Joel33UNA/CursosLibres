@@ -28,7 +28,7 @@ public class Connection {
         return theInstance;
     }
     
-    public static final String PROPERTIES_FILE_NAME="/db.properties";        
+    public static final String PROPERTIES_FILE_NAME="/resources/db.properties";        
     java.sql.Connection cnx;
     
     private Connection(){
@@ -48,8 +48,10 @@ public class Connection {
             String password = prop.getProperty("database_password");
             String database = prop.getProperty("database_name");
             
+            /*String URL_conexion="jdbc:mysql://"+ server+":"+port+"/"+
+                    database+"?user="+user+"&password="+password+"&serverTimezone=UTC";   */
             String URL_conexion="jdbc:mysql://"+ server+":"+port+"/"+
-                    database+"?user="+user+"&password="+password+"&serverTimezone=UTC";            
+                    database+"?user="+user+"&password="+password+"&serverTimezone=UTC&autoReconnect=true&useSSL=false";
             Class.forName(driver).newInstance();
             return DriverManager.getConnection(URL_conexion);
         } catch (Exception e) {

@@ -21,7 +21,7 @@ import logic.Usuario;
 
 @WebServlet(name = "LoginController", urlPatterns = {"/presentation/login/show",
                                                      "/presentation/login/login",
-                                                     "/presentation/login/show"})
+                                                     "/presentation/login/logout"})
 public class ControllerLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -9,4 +9,19 @@
     <property name="compilerSourceVM" value="7"/> 
     <property name="compilerTargetVM" value="7"/>    
   </jsp-config>
+  <servlet>
+      <servlet-name>ControllerLogin</servlet-name>
+      <servlet-class>presentation.login.ControllerLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>controllerLogin</servlet-name>
+       <url-pattern>/presentation/login/show</url-pattern>
+       <url-pattern>/presentation/login/login</url-pattern>
+       <url-pattern>/presentation/login/logout</url-pattern>
+  </servlet-mapping>
+  <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
 </glassfish-web-app>

@@ -50,6 +50,6 @@ input[type = "text"], input[type = "password"]{
     cursor: pointer;
 }
 
-input[type="text"].invalido, input[type="password"].invalid, select.invalid{
+input.invalido{
     border: 3px solid #FC6544;
 }
