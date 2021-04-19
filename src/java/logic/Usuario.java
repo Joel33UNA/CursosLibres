@@ -12,12 +12,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Usuario implements Serializable {
-    private String id;
-    private String nombre;
-    private String rol;
-    private String clave;
-    private String correo;
-    private long telefono;
+    protected String id;
+    protected String nombre;
+    protected String rol;
+    protected String clave;
+    protected String correo;
+    protected long telefono;
     
     public Usuario(){
         this.id = "";
@@ -26,15 +26,6 @@ public class Usuario implements Serializable {
         this.clave = "";
         this.correo = "";
         this.telefono = 0;
-    }
-
-    public Usuario(String id, String nombre, String rol, String clave, String correo, long telefono) {
-        this.id = id;
-        this.nombre = nombre;
-        this.rol = rol;
-        this.clave = clave;
-        this.correo = correo;
-        this.telefono = telefono;
     }
 
     public String getId() {
