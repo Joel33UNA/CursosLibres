@@ -7,7 +7,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 --%>
 
 <%@page import = "logic.Usuario"%>
-<% Usuario usuario = (Usuario) session.getAttribute("user"); %>
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <header>
@@ -24,19 +24,19 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
             <% } %>
             <% if (usuario!=null){%>
                 <li><a href="/CursosLibres">Inicio</a></li>
-                <% if (usuario.getRol() == "estudiante"){%>
+                <% if (usuario.getRol().equals("estudiante")){%>
                     <li><a href="/">Matricular</a></li>
                     <li><a href="/">Registro estudiante</a></li>
                     <li><a href="/">Historial</a></li>
                     <li><a href="/">Constancia</a></li>
-                    <li><a href="/">Cerrar sesión</a></li>
+                    <li><a href="/CursosLibres/presentation/login/logout">Cerrar sesión</a></li>
                 <% } %>
-                <% if (usuario.getRol() == "profesor"){%>
-                    <li><a href="/">Grupos a cargo</a></li>
+                <% if (usuario.getRol().equals("profesor")){%>
+                    <li><a href="i/">Grupos a cargo</a></li>
                     <li><a href="/">Registrar notas</a></li>
-                    <li><a href="/">Cerrar sesión</a></li>
+                    <li><a href="/CursosLibres/presentation/login/logout">Cerrar sesión</a></li>
                 <% } %>
-                <% if (usuario.getRol() == "administrador"){%>  
+                <% if (usuario.getRol().equals("administrador")){%>  
                     <li><a href="/">Listado y registro de cursos</a></li>
                     <li><a href="/">Listado y registro de profesores</a></li>
                     <li><a href="/">Abrir grupo</a></li>

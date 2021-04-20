@@ -13,11 +13,27 @@
       <servlet-name>ControllerLogin</servlet-name>
       <servlet-class>presentation.login.ControllerLogin</servlet-class>
   </servlet>
+  <servlet>
+      <servlet-name>ControllerAdmin</servlet-name>
+      <servlet-class>presentation.administrador.ControllerAdmin</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>ControllerProfe</servlet-name>
+      <servlet-class>presentation.profesor.ControllerProfe</servlet-class>
+  </servlet>
   <servlet-mapping>
       <servlet-name>controllerLogin</servlet-name>
        <url-pattern>/presentation/login/show</url-pattern>
        <url-pattern>/presentation/login/login</url-pattern>
        <url-pattern>/presentation/login/logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>controllerAdmin</servlet-name>
+       <url-pattern>/presentation/administrador/show</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>controllerProfe</servlet-name>
+       <url-pattern>/presentation/profesor/show</url-pattern>
   </servlet-mapping>
   <session-config>
         <session-timeout>

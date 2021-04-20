@@ -16,6 +16,10 @@ public class ModelAdmin {
     public ModelAdmin(){
         this.administrador = new Administrador();
     }
+    
+    public ModelAdmin(Administrador admin){
+        this.administrador = admin;
+    }
 
     public Administrador getAdministrador() {
         return administrador;

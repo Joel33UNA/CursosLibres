@@ -14,25 +14,28 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import logic.Profesor;
+import logic.Usuario;
 
-@WebServlet(name = "ControllerProfe", urlPatterns = {"/ControllerProfe"})
+@WebServlet(name = "ControllerProfe", urlPatterns = {"/presentation/profesor/show"})
 public class ControllerProfe extends HttpServlet {
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControllerProfe</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControllerProfe at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        HttpSession sesion = request.getSession();
+        Profesor profe = (Profesor)sesion.getAttribute("usuario");
+        //request.setAttribute("model", new ModelProfe());
+        String viewURL;
+        switch(request.getServletPath()){
+            case "/presentation/profesor/show": { viewURL = this.showAction(request); break;}
+            default: { viewURL = ""; break; }
         }
+        request.getRequestDispatcher(viewURL).forward(request, response);
+    }
+    
+    private String showAction(HttpServletRequest request){
+        return "/presentation/profesor/grupos.jsp";
     }
 
     @Override
@@ -45,10 +48,5 @@ public class ControllerProfe extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
     }
 }

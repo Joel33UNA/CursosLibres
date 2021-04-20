@@ -30,6 +30,7 @@ public class ControllerLogin extends HttpServlet {
         switch(request.getServletPath()){
             case "/presentation/login/show": { viewURL = this.showAction(request); break;}
             case "/presentation/login/login": { viewURL = this.login(request); break; }
+            case "/presentation/login/logout": { viewURL = this.logout(request); break; }
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
@@ -69,14 +70,14 @@ public class ControllerLogin extends HttpServlet {
     
     private String loginBD(HttpServletRequest request){
         ModelLogin model = (ModelLogin)request.getAttribute("model");
-        HttpSession session = request.getSession(true);
+        HttpSession sesion = request.getSession(true);
         try{
             Usuario usuario = this.validarCredenciales(model.getUsuario());
-            session.setAttribute("usuario", usuario);
+            sesion.setAttribute("usuario", usuario);
             switch(usuario.getRol()){
                 case "administrador": return "/presentation/administrador/show";
-                case "profesor": return "";
-                case "estudiante": return "";
+                case "profesor": return "/presentation/profesor/show";
+                case "estudiante": return "/presentation/estudiante/show";
                 default: return "";
             }
         }
@@ -97,6 +98,13 @@ public class ControllerLogin extends HttpServlet {
             throw new Exception();
         }
         return usuarioBD;
+    }
+    
+    private String logout(HttpServletRequest request){
+        HttpSession sesion = request.getSession(true);
+        sesion.removeAttribute("usuario");
+        sesion.invalidate();
+        return "/presentation/login/login.jsp";
     }
     
     @Override

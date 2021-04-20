@@ -10,9 +10,10 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="css/header.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/header.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/profesor.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Administrador</title>
+        <title>Grupos a cargo</title>
     </head>
     <body>
         <%@ include file="/presentation/header.jsp" %>

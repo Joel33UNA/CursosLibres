@@ -17,6 +17,10 @@ public class ModelProfe {
         this.profesor = new Profesor();
     }
 
+    ModelProfe(Profesor profe) {
+        this.profesor = profe;
+    }
+
     public Profesor getProfesor() {
         return profesor;
     }
