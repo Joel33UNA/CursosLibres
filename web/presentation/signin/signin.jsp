@@ -7,50 +7,42 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 --%>
 
 <%@page import="java.util.HashMap"%>
-<%@page import="presentation.login.ModelLogin"%>
 <%@page import="java.util.Map"%>
+<%@page import="presentation.signin.ModelSignin"%>
 
 <% Map<String, String> errores = (Map<String, String>)request.getAttribute("errores"); %>
-<% ModelLogin model = (ModelLogin)request.getAttribute("model"); %>
+<% ModelSignin model = (ModelSignin)request.getAttribute("model"); %>
 <% Map<String,String[]> form = (errores==null)?this.getForm(model):request.getParameterMap();%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
     <head>
         <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css"/>
-        <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css"/>
-        <script src="https://kit.fontawesome.com/231dc4ad61.js" crossorigin="anonymous"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Iniciar sesión</title>
+        <title>Registrarse</title>
     </head>
     <body>
         <%@ include file="/presentation/header.jsp" %>
-        <form class="formulario" action="/CursosLibres/presentation/login/login" method="post">
-            <h2>Iniciar sesión</h2>
+        <form class ="formulario" action="presentation/signin/signin" method="post">
+            <h2>Registrarse</h2>
             <div class="sesion">
                 <div class="id">
-                    <i class="far fa-smile"></i>
+                    <i class="fas fa-id-card"></i>
                     <input class="<%=comprobarErrores("id", errores)%>" type="text"
-                           name="id" placeholder="Identificación" 
-                           value="<%=form.get("id")[0]%>" tittle="<%=title("id", errores)%>"></input>
-                </div>
-                <div class="password">
-                    <i class="fas fa-lock"></i>
-                    <input class="<%=comprobarErrores("password", errores)%>" type="password", 
-                           name="password" placeholder="Contraseña"
-                           value="<%=form.get("password")[0]%>" title="<%=title("password", errores)%>"></input>
+                           name="id", placeholder="Digite su identificación"
+                           value="" tittle="<%=title("id", errores)%>"></input>  
                 </div>
                 <div>
-                    <input type="submit" value="Iniciar Sesión" class="boton"></input>
+                    <input type="submit" value="Registrarse", class="boton"></input>
                 </div>
             </div>
         </form>
         <%@ include file="/presentation/footer.jsp" %>
     </body>
 </html>
-<%! 
+
+<%!
     private String comprobarErrores(String texto, Map<String, String> errores){
         if(errores != null && errores.get(texto)!= null){ return "invalido"; }
         return "";
@@ -63,11 +55,10 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         return "";
     }
 
-    private Map<String,String[]> getForm(ModelLogin model){
+    private Map<String,String[]> getForm(ModelSignin model){
        Map<String,String[]> values = new HashMap<>();
-       values.put("id", new String[]{model.getUsuario().getId()});
-       values.put("password", new String[]{model.getUsuario().getClave()});
+       //values.put("id", new String[]{model.getUsuario().getId()});
+       //values.put("password", new String[]{model.getUsuario().getClave()});
        return values;
     }
-
 %>

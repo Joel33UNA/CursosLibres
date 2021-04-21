@@ -56,3 +56,5 @@ create table gruposestudiantes(
     foreign key (id_estudiante) references estudiantes(id),
     foreign key (id_grupo) references grupos(id)
 );
+
+alter table usuarios add constraint usuarios_ck_rol check (rol in ('administrador','profesor','estudiante'));
