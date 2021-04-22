@@ -50,11 +50,11 @@ public class Service {
         return curso;
     }
 
-    public List<Curso> busquedaCurso(Curso c) throws Exception {
+    public List<Curso> busquedaCurso(String c) throws Exception {
         List<Curso> cur = cursos.readAll();
         List<Curso> nuevo = new ArrayList<>();
         for(int i = 0; i < cur.size(); i++){
-            if(cur.get(i).getNombre().contains(c.getNombre()) || cur.get(i).getTematica().contains(c.getNombre())){
+            if(cur.get(i).getNombre().contains(c) || cur.get(i).getTematica().contains(c)){
                 nuevo.add(cur.get(i));
             }
         }

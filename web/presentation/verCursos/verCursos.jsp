@@ -21,32 +21,33 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     </head>
     <body>
         <%@ include file="/presentation/header.jsp" %>
-        <h1>¡Aquí los cursos disponibles!</h1>
-        <h2>Dele clic al nombre del curso para matricular si así lo desea.</h2>
-        <table border>
-            <thead>
-                <tr >
-                    <th>Temática</th> <th>Nombre</th> <th>Estatus</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% for(int i = 0; i < model.getCursos().size(); i++){ %>
-                <tr>
-                    <td> <%= model.getCursos().get(i).getTematica() %> </td>
-                    <td><a href="/"> <%= model.getCursos().get(i).getNombre() %> </a></td> 
-                    <td> <%= model.getCursos().get(i).getEstatus()%> </td>
-                </tr>
-                <% } %>
-            </tbody>
-        </table>
-        <div>
-            <br> 
-                Escriba aquí el nombre o la temática del curso que quiere buscar: 
-                <input  type="text" name="buscar" value=" "></input>
-                <input type="submit" value="Buscar" class="boton"></input>
-            </br>
-            
-        </div>
+        <form class="formulario" action="/CursosLibres/presentation/visualizarCursos/buscar" method="post">
+            <h1>¡Aquí los cursos disponibles!</h1>
+            <h2>Dele clic al nombre del curso para matricular si así lo desea.</h2>
+            <table border>
+                <thead>
+                    <tr >
+                        <th>Temática</th> <th>Nombre</th> <th>Estatus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(int i = 0; i < model.getCursos().size(); i++){ %>
+                    <tr>
+                        <td> <%= model.getCursos().get(i).getTematica() %> </td>
+                        <td><a href="/"> <%= model.getCursos().get(i).getNombre() %> </a></td> 
+                        <td> <%= model.getCursos().get(i).getEstatus()%> </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <div>
+                <br> 
+                    Escriba aquí el nombre o la temática del curso que quiere buscar: 
+                    <input  type="text" name="buscar" value=" "></input>
+                    <input type="submit" value="Buscar" class="boton"></input>
+                </br>
+            </div>
+        </form>
         <%@ include file="/presentation/footer.jsp" %>
     </body>
 </html>

@@ -9,8 +9,6 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 package presentation.curso;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,10 +44,9 @@ public class ControllerCurso extends HttpServlet {
 
     private String buscar(HttpServletRequest request) {
         ModelCurso model = (ModelCurso)request.getAttribute("model");
-        Curso c = new Curso();
-        c.setNombre(request.getParameter("buscar"));
+        String cadena = request.getParameter("buscar");
         try {
-            model.setCursos(logic.Service.instancia().busquedaCurso(c));
+            model.setCursos(logic.Service.instancia().busquedaCurso(cadena));
         } catch (Exception ex) {
             ex.getMessage();
             return "Hubo un error";
