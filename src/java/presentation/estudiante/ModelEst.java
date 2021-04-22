@@ -17,6 +17,10 @@ public class ModelEst {
         this.estudiante = new Estudiante();
     }
 
+    public ModelEst(Estudiante est){
+        this.estudiante = est;
+    }
+    
     public Estudiante getEstudiante() {
         return estudiante;
     }

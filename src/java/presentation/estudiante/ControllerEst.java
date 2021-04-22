@@ -9,42 +9,43 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 package presentation.estudiante;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import logic.Estudiante;
 
-@WebServlet(name = "ControllerEst", urlPatterns = {"/Controller"})
+@WebServlet(name = "ControllerEst", urlPatterns = {"/presentation/estudiante/show"})
 public class ControllerEst extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Controller</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Controller at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        HttpSession sesion = request.getSession();
+        Estudiante est = (Estudiante)sesion.getAttribute("usuario");
+        request.setAttribute("model", new ModelEst(est));
+        String viewURL; 
+        switch(request.getServletPath()){
+            case "/presentation/estudiante/show": { viewURL = this.showAction(request); break;}
+            default: { viewURL = ""; break; }
         }
+        request.getRequestDispatcher(viewURL).forward(request, response);
+    }
+    
+    private String showAction(HttpServletRequest request){
+        return "/presentation/estudiante/matricular.jsp";
     }
 
+     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+  
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
