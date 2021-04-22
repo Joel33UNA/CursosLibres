@@ -10,10 +10,10 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="../../css/header.css" rel="stylesheet" type="text/css"/>
-        <link href="../../css/administrador.css" rel="stylesheet" type="text/css"/>
+        <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css"/>
+        <link href="${pageContext.request.contextPath}/css/estudiante.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Administrar grupos</title>
+        <title>Matricular cursos</title>
     </head>
     <body>
         <%@ include file="/presentation/header.jsp" %>

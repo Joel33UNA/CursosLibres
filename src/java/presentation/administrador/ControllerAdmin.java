@@ -9,7 +9,6 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 package presentation.administrador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.Administrador;
-import logic.Usuario;
 
 @WebServlet(name = "ControllerAdmin", urlPatterns = {"/presentation/administrador/show"})
 public class ControllerAdmin extends HttpServlet {
@@ -36,7 +34,7 @@ public class ControllerAdmin extends HttpServlet {
     }
     
     private String showAction(HttpServletRequest request){
-        return "/presentation/administrador/grupos.jsp";
+        return "/presentation/administrador/cursos.jsp";
     }
 
     @Override
