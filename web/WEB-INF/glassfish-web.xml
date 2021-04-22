@@ -25,6 +25,10 @@
       <servlet-name>ControllerSignin</servlet-name>
       <servlet-class>presentation.signin.ControllerSignin</servlet-class>
   </servlet>
+  <servlet>
+      <servlet-name>ControllerCurso</servlet-name>
+      <servlet-class>presentation.curso.ControllerCurso</servlet-class>
+  </servlet>
   <servlet-mapping>
       <servlet-name>controllerLogin</servlet-name>
        <url-pattern>/presentation/login/show</url-pattern>
@@ -43,6 +47,11 @@
       <servlet-name>controllerSignin</servlet-name>
        <url-pattern>/presentation/signin/show</url-pattern>
        <url-pattern>/presentation/signin/signin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>controllerCurso</servlet-name>
+       <url-pattern>/presentation/visualizarCursos/show</url-pattern>
+       <url-pattern>/presentation/visualizarCursos/buscar</url-pattern>
   </servlet-mapping>
   <session-config>
         <session-timeout>

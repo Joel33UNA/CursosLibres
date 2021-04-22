@@ -36,6 +36,22 @@ input[type = "text"], input[type = "password"]{
     padding: 10px;
 }
 
+.overlay{
+    display: none; position: absolute;
+    top: 0%; left: 0%;
+    width: 100%; height: 100%;
+    background-color: lightgray;
+    z-index:1; opacity:.70;
+}
+.popup {
+    display: none; position: absolute;
+    top: 10%; left: 25%;
+    width: 50%; height: 50%;
+    padding: 5px;
+    border: 5px solid black;
+    background-color: white;
+    z-index:2;
+}
 
 .boton{
     border: none;
