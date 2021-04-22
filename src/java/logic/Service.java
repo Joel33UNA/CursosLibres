@@ -29,4 +29,8 @@ public class Service {
         Usuario usuario = usuarios.readUsuario(id);
         return usuario;
     }
+    
+    public void insertarUsuario(Usuario usuario) throws Exception{
+        usuarios.signin(usuario);
+    }
 }

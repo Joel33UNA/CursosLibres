@@ -100,11 +100,22 @@ public class UsuarioDAO {
     }
     
     public void signin(Usuario u) throws Exception{
-        String sql = "insert into usuario values (%s, %s, %s, %s, %s, %s)";
-        sql = String.format(sql, u.getId(), u.getClave(), u.getRol(), 
+        String sql1 = "insert into usuarios values ('%s', '%s', '%s' ,'%s' ,'%s' ,%s)";
+        sql1 = String.format(sql1, u.getId(), u.getClave(), u.getRol(), 
                 u.getNombre(), u.getCorreo(), String.valueOf(u.getTelefono()));
-        PreparedStatement stm = Connection.instance().prepareStatement(sql);
-        if(Connection.instance().executeUpdate(stm) == 0){
+        PreparedStatement stm1 = Connection.instance().prepareStatement(sql1);
+        if(Connection.instance().executeUpdate(stm1) == 0){
+            throw new Exception("Usuario ya existe");
+        }
+        String sql2;
+        switch(u.getRol()){
+            case "estudiante": { sql2 = "insert into estudiantes values ('%s')"; break; }
+            case "profesor": { sql2 = "insert into profesores values ('%s')"; break; }
+            default: { sql2 = ""; break; }
+        }
+        sql2 = String.format(sql2, u.getId());
+        PreparedStatement stm2 = Connection.instance().prepareStatement(sql2);
+        if(Connection.instance().executeUpdate(stm2) == 0){
             throw new Exception("Usuario ya existe");
         }
     }

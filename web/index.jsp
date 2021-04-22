@@ -10,8 +10,8 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="css/header.css" rel="stylesheet" type="text/css"/> <%-- incluimos la hoja de cascada header.css --%>
-        <link href="css/index.css" rel="stylesheet" type="text/css"/> <%-- incluimos la hoja de cascada index.css --%>
+        <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css"/> <%-- incluimos la hoja de cascada header.css --%>
+        <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet" type="text/css"/> <%-- incluimos la hoja de cascada index.css --%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>cursoslibres.com</title>
     </head>
