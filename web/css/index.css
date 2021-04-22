@@ -6,3 +6,11 @@ ESTUDIANTE: JOEL ZAMORA Y DIEGO JIMÉNEZ
 PROFESOR: JOSE SÁNCHEZ SALAZAR
 */
 
+p.oculto{
+    font-size: 0;
+}
+
+p.password{
+    font-size: 15px;
+    color: darkred;
+}

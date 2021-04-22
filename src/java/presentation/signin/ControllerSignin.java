@@ -48,6 +48,7 @@ public class ControllerSignin extends HttpServlet {
     
     private String signin(HttpServletRequest request){
         Map<String, String> errores = this.comprobarErrores(request);
+        Map<String, String> password = new HashMap<>();
         if(errores.isEmpty()){
             ModelSignin model = (ModelSignin)request.getAttribute("model");
             model.getUsuario().setId(request.getParameter("id"));
@@ -56,6 +57,8 @@ public class ControllerSignin extends HttpServlet {
             model.getUsuario().setTelefono(Long.valueOf(request.getParameter("telefono")));
             model.getUsuario().setRol("estudiante");
             model.getUsuario().setClave(this.generarPass(4));
+            password.put("password", model.getUsuario().getClave());
+            request.setAttribute("password", password);
             return this.signinBD(request);
         }
         else{
