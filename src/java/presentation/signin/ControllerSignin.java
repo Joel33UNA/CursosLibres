@@ -20,7 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import logic.Usuario;
 
 @WebServlet(name = "ControllerSignin", urlPatterns = {"/presentation/signin/show",
-                                                      "/presentation/signin/signin"})
+                                                      "/presentation/signin/showprof",
+                                                      "/presentation/signin/signin",
+                                                      "/presentation/signin/signinprof"})
 public class ControllerSignin extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -28,14 +30,16 @@ public class ControllerSignin extends HttpServlet {
         request.setAttribute("model", new ModelSignin());
         String viewURL;
         switch(request.getServletPath()){
-            case "/presentation/signin/show": { viewURL = this.showAction(request); break; }
-            case "/presentation/signin/signin": { viewURL = this.signin(request); break; }
+            case "/presentation/signin/show": { viewURL = this.showAction(request, "estudiante"); break; }
+            case "/presentation/signin/showprof": { viewURL = this.showAction(request, "profesor");  break; }
+            case "/presentation/signin/signin": { viewURL = this.signin(request, "estudiante"); break; }
+            case "/presentation/signin/signinprof": { viewURL = this.signin(request, "profesor");  break; }
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
     }
     
-    private String showAction(HttpServletRequest request){
+    private String showAction(HttpServletRequest request, String rol){
         ModelSignin model = (ModelSignin)request.getAttribute("model");
         model.getUsuario().setId("");
         model.getUsuario().setNombre("");
@@ -43,10 +47,12 @@ public class ControllerSignin extends HttpServlet {
         model.getUsuario().setTelefono(0);
         model.getUsuario().setClave("");
         model.getUsuario().setRol("");
-        return "/presentation/signin/signin.jsp";
+        if (rol.equals("estudiante"))
+            return "/presentation/signin/signin.jsp";
+        else return "/presentation/administrador/signin.jsp";
     }
     
-    private String signin(HttpServletRequest request){
+    private String signin(HttpServletRequest request, String rol){
         Map<String, String> errores = this.comprobarErrores(request);
         Map<String, String> password = new HashMap<>();
         if(errores.isEmpty()){
@@ -55,7 +61,7 @@ public class ControllerSignin extends HttpServlet {
             model.getUsuario().setNombre(request.getParameter("nombre"));
             model.getUsuario().setCorreo(request.getParameter("correo"));
             model.getUsuario().setTelefono(Long.valueOf(request.getParameter("telefono")));
-            model.getUsuario().setRol("estudiante");
+            model.getUsuario().setRol(rol);
             model.getUsuario().setClave(this.generarPass(4));
             password.put("password", model.getUsuario().getClave());
             request.setAttribute("password", password);
@@ -63,7 +69,9 @@ public class ControllerSignin extends HttpServlet {
         }
         else{
             request.setAttribute("errores", errores);
-            return "/presentation/signin/signin.jsp";
+            if (rol.equals("estudiante"))
+                return "/presentation/signin/signin.jsp";
+            else return "/presentation/administrador/signin.jsp";
         }
     }
     

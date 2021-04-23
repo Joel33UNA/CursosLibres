@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.Administrador;
 
-@WebServlet(name = "ControllerAdmin", urlPatterns = {"/presentation/administrador/show"})
+@WebServlet(name = "ControllerAdmin", urlPatterns = {"/presentation/administrador/show",
+                                                     "/presentation/administrador/showprof",
+                                                    "/presentation/admministrador/signin"})
 public class ControllerAdmin extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -27,7 +29,9 @@ public class ControllerAdmin extends HttpServlet {
         request.setAttribute("model", new ModelAdmin(admin));
         String viewURL; 
         switch(request.getServletPath()){
-            case "/presentation/administrador/show": { viewURL = this.showAction(request); break;}
+            case "/presentation/administrador/show": { viewURL = this.showAction(request); break; }
+            case "/presentation/administrador/showprof": { viewURL = this.showSignin(request); break; }
+            case "/presentation/admministrador/signin": { viewURL = this.signin(request); break; }
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
@@ -35,6 +39,14 @@ public class ControllerAdmin extends HttpServlet {
     
     private String showAction(HttpServletRequest request){
         return "/presentation/administrador/cursos.jsp";
+    }
+    
+    private String showSignin(HttpServletRequest request){
+        return "/presentation/signin/showprof";
+    }
+    
+    private String signin(HttpServletRequest request){
+        return "/presentation/signin/signinprof";
     }
 
     @Override

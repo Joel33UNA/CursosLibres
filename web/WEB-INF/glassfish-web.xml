@@ -38,6 +38,8 @@
   <servlet-mapping>
       <servlet-name>controllerAdmin</servlet-name>
        <url-pattern>/presentation/administrador/show</url-pattern>
+       <url-pattern>/presentation/administrador/showprof</url-pattern>
+       <url-pattern>/presentation/administrador/signin</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
       <servlet-name>controllerProfe</servlet-name>
@@ -46,7 +48,9 @@
   <servlet-mapping>
       <servlet-name>controllerSignin</servlet-name>
        <url-pattern>/presentation/signin/show</url-pattern>
+       <url-pattern>/presentation/signin/showprof</url-pattern>
        <url-pattern>/presentation/signin/signin</url-pattern>
+       <url-pattern>/presentation/signin/signinprof</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
       <servlet-name>controllerEst</servlet-name>
