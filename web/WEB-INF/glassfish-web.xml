@@ -44,6 +44,7 @@
   <servlet-mapping>
       <servlet-name>controllerProfe</servlet-name>
        <url-pattern>/presentation/profesor/show</url-pattern>
+       <url-pattern>/presentation/profesor/visualizarprofes</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
       <servlet-name>controllerSignin</servlet-name>

@@ -5,3 +5,9 @@ PROYECTO I
 ESTUDIANTE: JOEL ZAMORA Y DIEGO JIMÉNEZ
 PROFESOR: JOSE SÁNCHEZ SALAZAR
 */
+
+table{
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}

@@ -6,7 +6,7 @@ ESTUDIANTE: JOEL ZAMORA Y DIEGO JIMÉNEZ
 PROFESOR: JOSE SÁNCHEZ SALAZAR
 --%>
 
-
+<%@page import="logic.Curso"%>
 <%@page import="presentation.curso.ModelCurso"%>
 <% ModelCurso model = (ModelCurso)request.getAttribute("model"); %>
 
@@ -15,7 +15,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <html>
     <head>
         <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css"/>
-        <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css"/>
+        <link href="${pageContext.request.contextPath}/css/curso.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cursos</title>
     </head>
@@ -30,11 +30,11 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                 </tr>
             </thead>
             <tbody>
-                <% for(int i = 0; i < model.getCursos().size(); i++){ %>
+                <% for(Curso c : model.getCursos()){ %>
                 <tr>
-                    <td> <%= model.getCursos().get(i).getTematica() %> </td>
-                    <td><a href="/"> <%= model.getCursos().get(i).getNombre() %> </a></td> 
-                    <td> <%= model.getCursos().get(i).getEstatus()%> </td>
+                    <td> <%= c.getTematica() %> </td>
+                    <td><a href="/"> <%= c.getNombre() %> </a></td> 
+                    <td> <%= c.getEstatus()%> </td>
                 </tr>
                 <% } %>
             </tbody>
