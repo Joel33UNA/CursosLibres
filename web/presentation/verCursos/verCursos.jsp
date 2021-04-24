@@ -23,7 +23,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <%@ include file="/presentation/header.jsp" %>
         <form class="formulario" action="/CursosLibres/presentation/visualizarCursos/buscar" method="post">
             <h1>¡Aquí los cursos disponibles!</h1>
-            <h2>Dele clic al nombre del curso para matricular si así lo desea.</h2>
+            <h2>Dele clic al nombre del curso para ver los grupos disponibles.</h2>
             <table border>
                 <thead>
                     <tr >
@@ -34,7 +34,12 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                     <% for(int i = 0; i < model.getCursos().size(); i++){ %>
                     <tr>
                         <td> <%= model.getCursos().get(i).getTematica() %> </td>
-                        <td><a href="/"> <%= model.getCursos().get(i).getNombre() %> </a></td> 
+                        <% if(model.getCursos().get(i).getEstatus().equals("en oferta")){ %>
+                            <td><a href="/presentation/grupos/show"> <%= model.getCursos().get(i).getNombre() %> </a></td> 
+                        <% } %>
+                        <% if(!(model.getCursos().get(i).getEstatus().equals("en oferta"))){ %>
+                           <td> <%= model.getCursos().get(i).getNombre() %> </td> 
+                        <% } %>
                         <td> <%= model.getCursos().get(i).getEstatus()%> </td>
                     </tr>
                     <% } %>
