@@ -99,6 +99,17 @@ public class UsuarioDAO {
         return usuarios;
     }
     
+    public List<Profesor> readProfes() throws Exception{
+        List<Profesor> profesores = new ArrayList<>();
+        String sql = "select* from profesores p join usuarios u on p.id = u.id;";
+        PreparedStatement stm = Connection.instance().prepareStatement(sql);
+        ResultSet rs = Connection.instance().executeQuery(stm);
+        while(rs.next()){
+            profesores.add(fromProfesor(rs));
+        }
+        return profesores;
+    }
+    
     public void signin(Usuario u) throws Exception{
         String sql1 = "insert into usuarios values ('%s', '%s', '%s' ,'%s' ,'%s' ,%s)";
         sql1 = String.format(sql1, u.getId(), u.getClave(), u.getRol(), 

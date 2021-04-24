@@ -27,8 +27,9 @@ public class ControllerProfe extends HttpServlet {
         request.setAttribute("model", new ModelProfe());
         String viewURL;
         switch(request.getServletPath()){
-            case "/presentation/profesor/show": { viewURL = this.showAction(request); break;}
-            case "/presentation/profesor/visualizarprofes": { viewURL = this.buscar(request); break; }
+            case "/presentation/profesor/show": { viewURL = showAction(request); break; }
+            case "/presentation/profesor/visualizarprofes": { viewURL = this.visualizar(request); break; }
+            case "/presentation/profesor/buscar": { viewURL = this.buscar(request); break; } 
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
@@ -38,12 +39,22 @@ public class ControllerProfe extends HttpServlet {
         return "/presentation/profesor/grupos.jsp";
     }
     
+    private String visualizar(HttpServletRequest request){
+        ModelProfe model = (ModelProfe)request.getAttribute("model");
+        try{
+            model.setProfesores(logic.Service.instancia().cargarProfes());
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return "/presentation/administrador/verprofesores.jsp";
+    }
+    
     private String buscar(HttpServletRequest request) {
         ModelProfe model = (ModelProfe)request.getAttribute("model");
         Profesor p = new Profesor();
         p.setNombre(request.getParameter("buscar"));
         try {
-            //model.setProfesor(logic.Service.instancia().busquedaProfe(p));
+            model.setProfesores(logic.Service.instancia().busquedaProfe(p));
         } catch (Exception ex) {
             ex.getMessage();
             return "Hubo un error";
