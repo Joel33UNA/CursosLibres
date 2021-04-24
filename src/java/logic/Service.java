@@ -13,8 +13,6 @@ import data.GrupoDAO;
 import data.UsuarioDAO;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Service {
     private static Service instancia;
@@ -48,17 +46,33 @@ public class Service {
         return cur;
     }
     
+    public List<Profesor> cargarProfes() throws Exception {
+        List<Profesor> pro = usuarios.readProfes();
+        return pro;
+    }
+    
     public Curso buscarCurso(int id) throws Exception{
         Curso curso = cursos.readCurso(id);
         return curso;
+    }
+    
+    public List<Profesor> busquedaProfe(Profesor p) throws Exception{
+        List<Profesor> profes = usuarios.readProfes();
+        List<Profesor> nuevo = new ArrayList<>();
+        for(Profesor profesor : profes){
+            if(profesor.getNombre().contains(p.getNombre()) || profesor.getId().contains(p.getId())){
+                nuevo.add(profesor);
+            }
+        }
+        return nuevo;
     }
 
     public List<Curso> busquedaCurso(String c) throws Exception {
         List<Curso> cur = cursos.readAll();
         List<Curso> nuevo = new ArrayList<>();
-        for(int i = 0; i < cur.size(); i++){
-            if(cur.get(i).getNombre().contains(c) || cur.get(i).getTematica().contains(c)){
-                nuevo.add(cur.get(i));
+        for(Curso curso: cur){
+            if(curso.getNombre().contains(c) || curso.getTematica().contains(c)){
+                nuevo.add(curso);
             }
         }
         return nuevo;
@@ -68,9 +82,9 @@ public class Service {
         try {
             List<Grupo> gru = grupos.readAll();
             List<Grupo> nuevo = new ArrayList<>();
-            for(int i = 0; i < gru.size(); i++){
-                if(gru.get(i).getCurso().equals(idCurso)) {
-                    nuevo.add(gru.get(i));
+            for(Grupo grupo: gru){
+                if(grupo.getCurso().equals(idCurso)) {
+                    nuevo.add(grupo);
                 }
             }
             return nuevo;

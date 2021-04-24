@@ -18,17 +18,18 @@ import javax.servlet.http.HttpSession;
 import logic.Profesor;
 import logic.Usuario;
 
-@WebServlet(name = "ControllerProfe", urlPatterns = {"/presentation/profesor/show"})
+@WebServlet(name = "ControllerProfe", urlPatterns = {"/presentation/profesor/show",
+                                                     "/presentation/profesor/visualizarprofes"})
 public class ControllerProfe extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion = request.getSession();
-        Profesor profe = (Profesor)sesion.getAttribute("usuario");
-        //request.setAttribute("model", new ModelProfe());
+        request.setAttribute("model", new ModelProfe());
         String viewURL;
         switch(request.getServletPath()){
-            case "/presentation/profesor/show": { viewURL = this.showAction(request); break;}
+            case "/presentation/profesor/show": { viewURL = showAction(request); break; }
+            case "/presentation/profesor/visualizarprofes": { viewURL = this.visualizar(request); break; }
+            case "/presentation/profesor/buscar": { viewURL = this.buscar(request); break; } 
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
@@ -36,6 +37,29 @@ public class ControllerProfe extends HttpServlet {
     
     private String showAction(HttpServletRequest request){
         return "/presentation/profesor/grupos.jsp";
+    }
+    
+    private String visualizar(HttpServletRequest request){
+        ModelProfe model = (ModelProfe)request.getAttribute("model");
+        try{
+            model.setProfesores(logic.Service.instancia().cargarProfes());
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return "/presentation/administrador/verprofesores.jsp";
+    }
+    
+    private String buscar(HttpServletRequest request) {
+        ModelProfe model = (ModelProfe)request.getAttribute("model");
+        Profesor p = new Profesor();
+        p.setNombre(request.getParameter("buscar"));
+        try {
+            model.setProfesores(logic.Service.instancia().busquedaProfe(p));
+        } catch (Exception ex) {
+            ex.getMessage();
+            return "Hubo un error";
+        }
+        return "/presentation/administrador/verprofesores.jsp";
     }
 
     @Override
