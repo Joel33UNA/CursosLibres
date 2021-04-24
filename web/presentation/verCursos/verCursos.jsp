@@ -26,17 +26,17 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
             <h2>Dele clic al nombre del curso para ver los grupos disponibles.</h2>
             <table border>
                 <thead>
-                    <tr >
+                    <tr>
                         <th>ID</th> <th>Temática</th> <th>Nombre</th> <th>Estatus</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for(Curso c: model.getCursos()){ %>
                     <tr>
-                        <td class="id"> <%= c.getId()%> </td>
+                        <td> <%= c.getId()%> </td>
                         <td> <%= c.getTematica() %> </td>
                         <% if(c.getEstatus().equals("en oferta")){ %>
-                            <td><a href="/presentation/grupos/show"> <%= c.getNombre() %> </a></td> 
+                            <td><a href="/CursosLibres/presentation/grupos/show?id=<%= c.getId()%>"> <%= c.getNombre() %> </a></td> 
                         <% } %>
                         <% if(!(c.getEstatus().equals("en oferta"))){ %>
                            <td> <%= c.getNombre() %> </td> 

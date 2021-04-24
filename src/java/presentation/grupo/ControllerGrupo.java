@@ -9,11 +9,13 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 package presentation.grupo;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logic.Grupo;
 
 @WebServlet(name = "ControllerGrupo", urlPatterns = {"/presentation/grupos/show",
                                                      "/presentation/grupos/matricula",
@@ -37,8 +39,14 @@ public class ControllerGrupo extends HttpServlet {
         String idCurso = request.getParameter("id");
         int idC = Integer.parseInt(idCurso); 
         ModelGrupo model = (ModelGrupo)request.getAttribute("model");
-        model.setGrupos(logic.Service.instancia().buscarGrupos(idC));
-        return "/presentation/grupos/verGrupos.jsp";
+        List<Grupo> g = logic.Service.instancia().buscarGrupos(idC);
+        if(g!=null){
+            model.setGrupos(g);
+            request.setAttribute("model", model);
+            return "/presentation/grupos/verGrupos.jsp";
+        }else{
+            return "";
+        }
     }
 
     private String matricular(HttpServletRequest request) {
