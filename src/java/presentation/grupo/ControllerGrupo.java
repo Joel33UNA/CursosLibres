@@ -9,6 +9,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 package presentation.grupo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +40,7 @@ public class ControllerGrupo extends HttpServlet {
         String idCurso = request.getParameter("id");
         int idC = Integer.parseInt(idCurso); 
         ModelGrupo model = (ModelGrupo)request.getAttribute("model");
-        List<Grupo> g = null;
+        List<Grupo> g = new ArrayList<>();
         try {
             g = logic.Service.instancia().buscarGrupos(idC);
         } catch (Exception ex) {
