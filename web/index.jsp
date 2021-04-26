@@ -23,7 +23,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     <body>
         <%@ include file="/presentation/header.jsp" %>
         <h1>¡Aquí los cursos disponibles!</h1>
-        <h2>Dele clic al nombre del curso para matricular si así lo desea.</h2>
+        <h2>Dele clic al nombre del curso para ver los grupos que corresponden a ese curso.</h2>
         <table border>
             <thead>
                 <tr >

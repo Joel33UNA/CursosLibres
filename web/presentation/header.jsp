@@ -22,6 +22,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                 <li><a href="/CursosLibres/presentation/signin/show">Registrarse</a></li>
             <% } %>
             <% if (usuario!=null){%>
+                <li><a href="/CursosLibres/presentation/login/infoUsuario?id=<%=usuario.getId()%>"> Usuario: <%= usuario.getNombre() %> </a></li>
                 <% if (usuario.getRol().equals("estudiante")){%>
                     <li><a href="/CursosLibres/presentation/estudiante/show">Matricular</a></li>
                     <li><a href="/">Registro estudiante</a></li>
