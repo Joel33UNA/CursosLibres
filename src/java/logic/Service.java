@@ -9,6 +9,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 package logic;
 
 import data.CursoDAO;
+import data.GrupoDAO;
 import data.UsuarioDAO;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Service {
     private static Service instancia;
     private UsuarioDAO usuarios;
     private CursoDAO cursos;
-
+    private GrupoDAO grupos;
     
     private Service(){
         this.usuarios = new UsuarioDAO();
@@ -66,14 +67,30 @@ public class Service {
         return nuevo;
     }
 
-    public List<Curso> busquedaCurso(Curso c) throws Exception {
+    public List<Curso> busquedaCurso(String c) throws Exception {
         List<Curso> cur = cursos.readAll();
         List<Curso> nuevo = new ArrayList<>();
-        for(Curso curso : cur){
-            if(curso.getNombre().contains(c.getNombre()) || curso.getTematica().contains(c.getNombre())){
+        for(Curso curso: cur){
+            if(curso.getNombre().contains(c) || curso.getTematica().contains(c)){
                 nuevo.add(curso);
             }
         }
         return nuevo;
+    }
+
+    public List<Grupo> buscarGrupos(int idCurso) {
+        try {
+            List<Grupo> gru = grupos.readAll();
+            List<Grupo> nuevo = new ArrayList<>();
+            for(Grupo grupo: gru){
+                if(grupo.getCurso().equals(idCurso)) {
+                    nuevo.add(grupo);
+                }
+            }
+            return nuevo;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
 }

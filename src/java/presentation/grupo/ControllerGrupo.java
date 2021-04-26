@@ -9,31 +9,52 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 package presentation.grupo;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logic.Grupo;
 
-@WebServlet(name = "ControllerGrupo", urlPatterns = {"/ControllerGrupo"})
+@WebServlet(name = "ControllerGrupo", urlPatterns = {"/presentation/grupos/show",
+                                                     "/presentation/grupos/matricula",
+                                                     "/presentation/grupos/buscar"})
 public class ControllerGrupo extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControllerGrupo</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControllerGrupo at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        request.setAttribute("model", new ModelGrupo());
+        String viewURL;
+        switch(request.getServletPath()){
+            case "/presentation/grupos/show": { viewURL = this.showAction(request); break;}
+            case "/presentation/grupos/matricula": { viewURL = this.matricular(request); break; }
+            case "/presentation/grupos/buscar": { viewURL = this.buscar(request); break; }
+            default: { viewURL = ""; break; }
         }
+        request.getRequestDispatcher(viewURL).forward(request, response);
+    }
+    
+    private String showAction(HttpServletRequest request) {
+        String idCurso = request.getParameter("id");
+        int idC = Integer.parseInt(idCurso); 
+        ModelGrupo model = (ModelGrupo)request.getAttribute("model");
+        List<Grupo> g = logic.Service.instancia().buscarGrupos(idC);
+        if(g!=null){
+            model.setGrupos(g);
+            request.setAttribute("model", model);
+            return "/presentation/grupos/verGrupos.jsp";
+        }else{
+            return "";
+        }
+    }
+
+    private String matricular(HttpServletRequest request) {
+        return null;
+    }
+
+    private String buscar(HttpServletRequest request) {
+        return null;
     }
 
     @Override
@@ -47,10 +68,4 @@ public class ControllerGrupo extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

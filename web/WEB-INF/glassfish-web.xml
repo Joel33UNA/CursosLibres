@@ -33,6 +33,14 @@
     <servlet-name>ControllerCurso</servlet-name>
     <servlet-class>presentation.curso.ControllerCurso</servlet-class>
   </servlet>
+  <servlet>
+      <servlet-name>ControllerCurso</servlet-name>
+      <servlet-class>presentation.curso.ControllerCurso</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>ControllerGrupo</servlet-name>
+      <servlet-class>presentation.grupo.ControllerGrupo</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>ControllerLogin</servlet-name>
     <url-pattern>/presentation/login/show</url-pattern>
@@ -65,6 +73,17 @@
     <servlet-name>ControllerCurso</servlet-name>
     <url-pattern>/presentation/curso/visualizarcursos</url-pattern>
     <url-pattern>/presentation/curso/buscar</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>controllerCurso</servlet-name>
+       <url-pattern>/presentation/visualizarCursos/show</url-pattern>
+       <url-pattern>/presentation/visualizarCursos/buscar</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>controllerGrupo</servlet-name>
+       <url-pattern>/presentation/grupos/show</url-pattern>
+       <url-pattern>/presentation/grupos/matricula</url-pattern>
+       <url-pattern>/presentation/grupos/buscar</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>
