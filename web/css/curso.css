@@ -11,3 +11,21 @@ table{
     border: 1px solid black;
     border-collapse: collapse;
 }
+
+.grid-container{
+    width: 100%;
+    display: inline-grid;
+    grid-gap: 20px 20px;
+    grid-template-columns: auto auto auto;
+    color: bisque;
+    background-color: darkred;
+    padding: 10px;
+}
+
+.grid-item{
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}

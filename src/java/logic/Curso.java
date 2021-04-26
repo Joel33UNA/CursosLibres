@@ -33,7 +33,7 @@ public class Curso {
         this.grupos = null;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

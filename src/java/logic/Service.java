@@ -23,6 +23,7 @@ public class Service {
     private Service(){
         this.usuarios = new UsuarioDAO();
         this.cursos = new CursoDAO();
+        this.grupos = new GrupoDAO();
     }
     
     public static Service instancia(){
@@ -83,10 +84,10 @@ public class Service {
     }
 
     public List<Grupo> buscarGrupos(int idCurso) throws Exception {
-        List<Grupo> gru = grupos.readAll();
+        List<Grupo> grups = this.grupos.readAll();
         List<Grupo> nuevo = new ArrayList<>();
-        for(Grupo grupo: gru){
-            if(grupo.getCurso().equals(idCurso)) {
+        for(Grupo grupo: grups){
+            if(grupo.getCurso().getId().equals(idCurso)) {
                 nuevo.add(grupo);
             }
         }

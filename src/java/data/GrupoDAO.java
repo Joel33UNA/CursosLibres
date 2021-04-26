@@ -33,10 +33,10 @@ public class GrupoDAO {
     }
     
     public List<Grupo> readAll() throws Exception{
+        List<Grupo> grupos = new ArrayList<>();
         String sql = "select* from grupos";
         PreparedStatement stm = Connection.instance().prepareStatement(sql);
         ResultSet rs = Connection.instance().executeQuery(stm);
-        List<Grupo> grupos = new ArrayList<>();
         while(rs.next()){
             grupos.add(from(rs));
         }

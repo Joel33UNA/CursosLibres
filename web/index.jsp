@@ -24,28 +24,16 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <%@ include file="/presentation/header.jsp" %>
         <h1>¡Aquí los cursos disponibles!</h1>
         <h2>Dele clic al nombre del curso para ver los grupos que corresponden a ese curso.</h2>
-        <table border>
-            <thead>
-                <tr >
-                    <th>ID</th><th>Temática</th> <th>Nombre</th> <th>Estatus</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% for(Curso c : model.getCursos()){ %>
-                <tr>
-                    <td> <%= c.getId() %> </td>
-                    <td> <%= c.getTematica() %> </td>
-                    <% if(c.getEstatus().equals("en oferta")){ %>
-                    <td><a href="/CursosLibres/presentation/grupo/show?id=<%=c.getId()%>"><%=c.getNombre()%></a></td>
-                    <% } %>
-                    <% if(!c.getEstatus().equals("en oferta")){ %>
-                        <td> <%= c.getNombre() %> </td>
-                    <% } %>
-                    <td> <%= c.getEstatus()%> </td>
-                </tr>
-                <% } %>
-            </tbody>
-        </table>
+        <div class="grid-container">
+            <% for(Curso c : model.getCursos()){ %>
+                <div class="image-container">
+                    <p> <%= c.getNombre()%> </p>
+                    <a target="_blank" href="/CursosLibres/presentation/grupo/show?id=<%=c.getId()%>">
+                        <%-- <img src=> --%>
+                    </a>
+                </div>
+            <% } %>
+        </div>
         <div>
             <br> 
                 Escriba aquí el nombre o la temática del curso que quiere buscar: 

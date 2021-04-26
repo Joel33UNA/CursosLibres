@@ -82,33 +82,9 @@ public class Grupo {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Grupo other = (Grupo) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.horario, other.horario)) {
-            return false;
-        }
-        if (!Objects.equals(this.curso, other.curso)) {
-            return false;
-        }
-        if (!Objects.equals(this.matricula, other.matricula)) {
-            return false;
-        }
-        if (!Objects.equals(this.profesor, other.profesor)) {
+        if (this.id != id) {
             return false;
         }
         return true;
     }
-
-    
 }
