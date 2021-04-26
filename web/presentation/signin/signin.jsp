@@ -12,7 +12,8 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 
 <% Map<String, String> errores = (Map<String, String>)request.getAttribute("errores"); %>
 <% ModelSignin model = (ModelSignin)request.getAttribute("model"); %>
-<% Map<String,String[]> form = (errores==null)?this.getForm(model):request.getParameterMap();%>
+<% Map<String, String[]> form = (errores==null)?this.getForm(model):request.getParameterMap();%>
+<% Map<String, String> pass = (Map<String, String>)request.getAttribute("password"); %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -49,10 +50,23 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                            name="telefono" value="<%=form.get("telefono")[0]%>" title="<%=title("telefono", errores)%>">
                 </div>
                 <div>
-                    <input type="submit" value="Registrarse", class="boton">
+                    <input type="submit" value="Registrarse", class="boton"
+                           onclick="document.getElementById('o').style.display='block';
+                           document.getElementById('p').style.display='block';">
                 </div>
-            </div>
+            </div> 
         </form>
+        <% if (pass != null && errores == null){ %>
+            <div><h3 class="password">Su nueva contraseña es: <%=pass.get("password")%></h3>
+        <% } %>
+        <% if (errores != null){ %>
+            <div>
+                <h3 class="errores"><%=title("id", errores)%></h3>
+                <h3 class="errores"><%=title("nombre", errores)%></h3>
+                <h3 class="errores"><%=title("correo", errores)%></h3>
+                <h3 class="errores"><%=title("telefono", errores)%></h3>
+            </div>
+        <% } %>
         <%@ include file="/presentation/footer.jsp" %>
     </body>
 </html>

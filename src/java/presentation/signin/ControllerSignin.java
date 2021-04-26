@@ -65,7 +65,7 @@ public class ControllerSignin extends HttpServlet {
             model.getUsuario().setClave(this.generarPass(4));
             password.put("password", model.getUsuario().getClave());
             request.setAttribute("password", password);
-            return this.signinBD(request);
+            return this.signinBD(request, rol);
         }
         else{
             request.setAttribute("errores", errores);
@@ -78,21 +78,21 @@ public class ControllerSignin extends HttpServlet {
     private Map<String, String> comprobarErrores(HttpServletRequest request){
         Map<String, String> errores = new HashMap<>();
         if(request.getParameter("id").isEmpty()){
-            errores.put("id", "id vacio");
+            errores.put("id", "El ID es inválido");
         }
         if(request.getParameter("nombre").isEmpty()){
-            errores.put("nombre", "nombre vacio");
+            errores.put("nombre", "El nombre es inválido");
         }
         if(request.getParameter("correo").isEmpty()){
-            errores.put("correo", "correo vacio");
+            errores.put("correo", "El correo electrónico es inválido");
         }
-        if(request.getParameter("telefono").isEmpty()){
-            errores.put("telefono", "telefono vacio");
+        if(request.getParameter("telefono").isEmpty() || !request.getParameter("telefono").matches("[+-]?\\d*(\\.\\d+)?")){
+            errores.put("telefono", "El teléfono es inválido");
         }
         return errores;
     }
     
-    private String signinBD(HttpServletRequest request){
+    private String signinBD(HttpServletRequest request, String rol){
         ModelSignin model = (ModelSignin)request.getAttribute("model");
         try{
             Usuario usuario = model.getUsuario();
@@ -100,11 +100,13 @@ public class ControllerSignin extends HttpServlet {
                 throw new Exception();
             }
             logic.Service.instancia().insertarUsuario(usuario);
-            return "/index.jsp";
+            if (rol.equals("estudiante"))
+                return "/presentation/signin/show";
+            else return "/presentation/signin/showprof";
         }
         catch(Exception e){
             Map<String, String> errores = new HashMap<>();
-            errores.put("id", "id repetido");
+            errores.put("id", "El ID ya está registrado en el sistema");
             request.setAttribute("errores", errores);
             return "/presentation/signin/signin.jsp";
         }

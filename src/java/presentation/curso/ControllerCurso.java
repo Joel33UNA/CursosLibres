@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logic.Curso;
 
-@WebServlet(name = "ControllerCurso", urlPatterns = {"/presentation/visualizarCursos/show", 
-                                                     "/presentation/visualizarCursos/buscar"})
+@WebServlet(name = "ControllerCurso", urlPatterns = {"/presentation/curso/visualizarcursos", 
+                                                     "/presentation/curso/buscar"})
 public class ControllerCurso extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -27,8 +27,8 @@ public class ControllerCurso extends HttpServlet {
         request.setAttribute("model", new ModelCurso());
         String viewURL;
         switch(request.getServletPath()){
-            case "/presentation/visualizarCursos/show":{ viewURL = this.showAction(request); break;}
-            case "/presentation/visualizarCursos/buscar": { viewURL = this.buscar(request); break; }
+            case "/presentation/curso/visualizarcursos":{ viewURL = this.showAction(request); break;}
+            case "/presentation/curso/buscar": { viewURL = this.buscar(request); break; }
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
@@ -41,7 +41,7 @@ public class ControllerCurso extends HttpServlet {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        return "/presentation/verCursos/verCursos.jsp";
+        return "/index.jsp";
     }
 
     private String buscar(HttpServletRequest request) {
