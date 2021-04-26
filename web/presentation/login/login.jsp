@@ -20,7 +20,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <html>
     <head>
         <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css"/>
-        <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css"/>
+        <link href="${pageContext.request.contextPath}/css/form.css" rel="stylesheet" type="text/css"/>
         <script src="https://kit.fontawesome.com/231dc4ad61.js" crossorigin="anonymous"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Iniciar sesión</title>

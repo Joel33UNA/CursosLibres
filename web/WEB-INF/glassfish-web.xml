@@ -34,8 +34,8 @@
     <servlet-class>presentation.curso.ControllerCurso</servlet-class>
   </servlet>
   <servlet>
-      <servlet-name>ControllerGrupo</servlet-name>
-      <servlet-class>presentation.grupo.ControllerGrupo</servlet-class>
+    <servlet-name>ControllerGrupo</servlet-name>
+    <servlet-class>presentation.grupo.ControllerGrupo</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ControllerLogin</servlet-name>
@@ -47,6 +47,7 @@
     <servlet-name>ControllerAdmin</servlet-name>
     <url-pattern>/presentation/administrador/show</url-pattern>
     <url-pattern>/presentation/administrador/showprof</url-pattern>
+    <url-pattern>/presentation/administrador/showcur</url-pattern>
     <url-pattern>/presentation/administrador/signin</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
@@ -68,18 +69,16 @@
   <servlet-mapping>
     <servlet-name>ControllerCurso</servlet-name>
     <url-pattern>/presentation/curso/visualizarcursos</url-pattern>
+    <url-patter>/presentation/curso/visualizarcursoadmin</url-patter>
+    <url-pattern>/presentation/curso/showcursoadd</url-pattern>
     <url-pattern>/presentation/curso/buscar</url-pattern>
+    <url-patter>/presentation/curso/agregar</url-patter>
   </servlet-mapping>
   <servlet-mapping>
-      <servlet-name>controllerCurso</servlet-name>
-       <url-pattern>/presentation/visualizarCursos/show</url-pattern>
-       <url-pattern>/presentation/visualizarCursos/buscar</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-      <servlet-name>controllerGrupo</servlet-name>
-       <url-pattern>/presentation/grupos/show</url-pattern>
-       <url-pattern>/presentation/grupos/matricula</url-pattern>
-       <url-pattern>/presentation/grupos/buscar</url-pattern>
+    <servlet-name>ControllerGrupo</servlet-name>
+    <url-pattern>/presentation/grupo/show</url-pattern>
+    <url-pattern>/presentation/grupo/matricula</url-pattern>
+    <url-pattern>/presentation/grupo/buscar</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>

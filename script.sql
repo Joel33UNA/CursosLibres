@@ -30,7 +30,7 @@ create table estudiantes(
 );
 
 create table cursos(
-    id int not null,
+    id int not null AUTO_INCREMENT,
     nombre varchar(45),
     tematica varchar(45),
     estatus varchar(45),
@@ -38,7 +38,7 @@ create table cursos(
 );
 
 create table grupos(
-    id int not null,
+    id int not null AUTO_INCREMENT,
     horario varchar(45),
     curso int,
     profesor varchar(45) not null,

@@ -27,17 +27,18 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <table border>
             <thead>
                 <tr >
-                    <th>Temática</th> <th>Nombre</th> <th>Estatus</th>
+                    <th>ID</th><th>Temática</th> <th>Nombre</th> <th>Estatus</th>
                 </tr>
             </thead>
             <tbody>
                 <% for(Curso c : model.getCursos()){ %>
                 <tr>
+                    <td> <%= c.getId() %> </td>
                     <td> <%= c.getTematica() %> </td>
-                    <% if(c.getEstatus() == "en oferta"){ %>
-                        <td><a href="/presentacion/grupos/show?id= <%= c.getId() %>" > <%= c.getNombre() %> </a></td>
+                    <% if(c.getEstatus().equals("en oferta")){ %>
+                    <td><a href="/CursosLibres/presentation/grupo/show?id=<%=c.getId()%>"><%=c.getNombre()%></a></td>
                     <% } %>
-                    <% if(c.getEstatus() != "en oferta"){ %>
+                    <% if(!c.getEstatus().equals("en oferta")){ %>
                         <td> <%= c.getNombre() %> </td>
                     <% } %>
                     <td> <%= c.getEstatus()%> </td>

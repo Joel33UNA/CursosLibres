@@ -35,7 +35,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                     <li><a href="/CursosLibres/presentation/login/logout">Cerrar sesión</a></li>
                 <% } %>
                 <% if (usuario.getRol().equals("administrador")){%>  
-                    <li><a href="/CursosLibres/presentation/administrador/show">Listado y registro de cursos</a></li>
+                    <li><a href="/CursosLibres/presentation/curso/visualizarcursoadmin">Listado y registro de cursos</a></li>
                     <li><a href="/CursosLibres/presentation/profesor/visualizarprofes">Listado y registro de profesores</a></li>
                     <li><a href="/">Abrir grupo</a></li>
                     <li><a href="/CursosLibres/presentation/login/logout">Cerrar sesión</a></li>

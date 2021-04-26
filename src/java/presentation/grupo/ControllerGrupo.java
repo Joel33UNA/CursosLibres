@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logic.Grupo;
 
-@WebServlet(name = "ControllerGrupo", urlPatterns = {"/presentation/grupos/show",
-                                                     "/presentation/grupos/matricula",
-                                                     "/presentation/grupos/buscar"})
+@WebServlet(name = "ControllerGrupo", urlPatterns = {"/presentation/grupo/show",
+                                                     "/presentation/grupo/matricula",
+                                                     "/presentation/grupo/buscar"})
 public class ControllerGrupo extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -27,9 +27,9 @@ public class ControllerGrupo extends HttpServlet {
         request.setAttribute("model", new ModelGrupo());
         String viewURL;
         switch(request.getServletPath()){
-            case "/presentation/grupos/show": { viewURL = this.showAction(request); break;}
-            case "/presentation/grupos/matricula": { viewURL = this.matricular(request); break; }
-            case "/presentation/grupos/buscar": { viewURL = this.buscar(request); break; }
+            case "/presentation/grupo/show": { viewURL = this.showAction(request); break;}
+            case "/presentation/grupo/matricula": { viewURL = this.matricular(request); break; }
+            case "/presentation/grupo/buscar": { viewURL = this.buscar(request); break; }
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);

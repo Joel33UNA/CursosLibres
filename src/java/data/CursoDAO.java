@@ -30,6 +30,16 @@ public class CursoDAO {
         }
     }
     
+    public void add(Curso c) throws Exception{
+        String sql = "insert into cursos (nombre, tematica, estatus) "
+                + "values ('%s', '%s', '%s')";
+        sql = String.format(sql, c.getNombre(), c.getTematica(), c.getEstatus());
+        PreparedStatement stm1 = Connection.instance().prepareStatement(sql);
+        if(Connection.instance().executeUpdate(stm1) == 0){
+            throw new Exception("Curso ya existe");
+        }
+    }
+    
     public List<Curso> readAll() throws Exception{
         List<Curso> cursos = new ArrayList<>();
         String sql = "select* from cursos";

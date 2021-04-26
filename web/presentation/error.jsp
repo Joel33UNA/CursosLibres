@@ -11,7 +11,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <html>
 <head>
 <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css"/>
-<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css"/>
+<link href="${pageContext.request.contextPath}/css/form.css" rel="stylesheet" type="text/css"/>
  <%@ include file="/presentation/header.jsp" %>
  <title>Error</title> 
 </head>

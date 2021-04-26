@@ -41,6 +41,10 @@ public class Service {
         usuarios.signin(usuario);
     }
     
+    public void insertarCurso(Curso curso) throws Exception{
+        cursos.add(curso);
+    }
+    
     public List<Curso> cargarCursos() throws Exception{
         List<Curso> cur = cursos.readAll();
         return cur;
