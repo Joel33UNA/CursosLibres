@@ -34,10 +34,6 @@
     <servlet-class>presentation.curso.ControllerCurso</servlet-class>
   </servlet>
   <servlet>
-      <servlet-name>ControllerCurso</servlet-name>
-      <servlet-class>presentation.curso.ControllerCurso</servlet-class>
-  </servlet>
-  <servlet>
       <servlet-name>ControllerGrupo</servlet-name>
       <servlet-class>presentation.grupo.ControllerGrupo</servlet-class>
   </servlet>

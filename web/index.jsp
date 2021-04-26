@@ -34,7 +34,12 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                 <% for(Curso c : model.getCursos()){ %>
                 <tr>
                     <td> <%= c.getTematica() %> </td>
-                    <td><a href="/"> <%= c.getNombre() %> </a></td> 
+                    <% if(c.getEstatus() == "en oferta"){ %>
+                        <td><a href="/presentacion/grupos/show?id= <%= c.getId() %>" > <%= c.getNombre() %> </a></td>
+                    <% } %>
+                    <% if(c.getEstatus() != "en oferta"){ %>
+                        <td> <%= c.getNombre() %> </td>
+                    <% } %>
                     <td> <%= c.getEstatus()%> </td>
                 </tr>
                 <% } %>
