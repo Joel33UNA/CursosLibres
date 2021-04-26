@@ -11,6 +11,8 @@ package presentation.login;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +23,8 @@ import logic.Usuario;
 
 @WebServlet(name = "LoginController", urlPatterns = {"/presentation/login/show",
                                                      "/presentation/login/login",
-                                                     "/presentation/login/logout"})
+                                                     "/presentation/login/logout",
+                                                     "/presentation/login/infoUsuario"})
 public class ControllerLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,6 +34,7 @@ public class ControllerLogin extends HttpServlet {
             case "/presentation/login/show": { viewURL = this.showAction(request); break;}
             case "/presentation/login/login": { viewURL = this.login(request); break; }
             case "/presentation/login/logout": { viewURL = this.logout(request); break; }
+            case "/presentation/login/infoUsuario": { viewURL = this.info(request); break; }
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
@@ -105,6 +109,21 @@ public class ControllerLogin extends HttpServlet {
         sesion.removeAttribute("usuario");
         sesion.invalidate();
         return "/presentation/login/login.jsp";
+    }
+    
+    private String info(HttpServletRequest request){
+        String id = request.getParameter("id");
+        ModelLogin model = (ModelLogin)request.getAttribute("model");
+        HttpSession sesion = request.getSession(true);
+        Usuario u = null;
+        try {
+            u = logic.Service.instancia().buscarUsuario(id);
+        } catch (Exception ex) {
+            return "/presentation/error.jsp";
+        }
+        sesion.setAttribute("usuario", u);
+        model.setUsuario(u);
+        return "/presentation/login/info.jsp";
     }
     
     @Override

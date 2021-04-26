@@ -42,6 +42,7 @@
     <url-pattern>/presentation/login/show</url-pattern>
     <url-pattern>/presentation/login/login</url-pattern>
     <url-pattern>/presentation/login/logout</url-pattern>
+    <url-pattern>/presentation/login/infoUsuario</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ControllerAdmin</servlet-name>

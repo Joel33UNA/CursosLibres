@@ -21,7 +21,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     </head>
     <body>
         <%@ include file="/presentation/header.jsp" %>
-        <form class="formulario" action="/CursosLibres/presentation/grupos/matricula" method="post">
+        <form class="formulario" action="/CursosLibres/presentation/grupo/matricula" method="post">
             <h1>Aquí los grupos correspondientes al curso <%= model.getGrupos().get(0).getCurso().getNombre()%> </h1>
             <h2>Dele clic al horario del grupo para matricular si así lo desea.</h2>
             <table border>
@@ -34,7 +34,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                     <% for(int i = 0; i < model.getGrupos().size(); i++){ %>
                     <tr>
                         <td> <%= model.getGrupos().get(i).getId() %> </td>
-                        <td><a href="/presentation/grupos/matricula"> <%= model.getGrupos().get(i).getHorario() %> </a></td>
+                        <td><a href="/presentation/grupo/matricula"> <%= model.getGrupos().get(i).getHorario() %> </a></td>
                         <td> <%= model.getGrupos().get(i).getProfesor().getNombre() %> </td>
                     </tr>
                     <% } %>
