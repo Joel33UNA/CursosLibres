@@ -14,6 +14,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <% Map<String, String> errores = (Map<String, String>)request.getAttribute("errores"); %>
 <% ModelSignin model = (ModelSignin)request.getAttribute("model"); %>
 <% Map<String,String[]> form = (errores==null)?this.getForm(model):request.getParameterMap();%>
+<% Map<String, String> pass = (Map<String, String>)request.getAttribute("password"); %>
 
 <!DOCTYPE html>
 <html>
@@ -53,6 +54,17 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                 </div>
             </div>
         </form>
+        <% if (pass != null && errores == null){ %>
+            <div><h3 class="password">Su nueva contraseña es: <%=pass.get("password")%></h3>
+        <% } %>
+        <% if (errores != null){ %>
+            <div>
+                <h3 class="errores"><%=title("id", errores)%></h3>
+                <h3 class="errores"><%=title("nombre", errores)%></h3>
+                <h3 class="errores"><%=title("correo", errores)%></h3>
+                <h3 class="errores"><%=title("telefono", errores)%></h3>
+            </div>
+        <% } %>
         <%@ include file="/presentation/footer.jsp" %>
     </body>
 </html>

@@ -17,6 +17,15 @@ h2{
     color: #1a2537;
 }
 
+.password{
+    text-align: center;
+}
+
+.errores{
+    text-align: center;
+    color: #FC6544;
+}
+
 .formulario{
     background-color: lightgray;
     padding: 30px;

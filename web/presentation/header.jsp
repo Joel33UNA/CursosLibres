@@ -17,13 +17,11 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     <div class="submenu">
         <ul>
             <% if (usuario==null){%>
-                <li><a href="/CursosLibres">Inicio</a></li>
+                <li><a href="/CursosLibres/presentation/curso/visualizarcursos">Inicio</a></li>
                 <li><a href="/CursosLibres/presentation/login/show">Iniciar sesión</a></li>
                 <li><a href="/CursosLibres/presentation/signin/show">Registrarse</a></li>
-                <li><a href="/CursosLibres/presentation/visualizarCursos/show">Visualizar cursos</a></li>
             <% } %>
             <% if (usuario!=null){%>
-                <li><a href="/CursosLibres">Inicio</a></li>
                 <% if (usuario.getRol().equals("estudiante")){%>
                     <li><a href="/CursosLibres/presentation/estudiante/show">Matricular</a></li>
                     <li><a href="/">Registro estudiante</a></li>
