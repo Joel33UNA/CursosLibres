@@ -28,24 +28,15 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                 Si desea agregar un nuevo curso, haga clic <a href="/CursosLibres/presentation/curso/showcursoadd">aquí</a>.
             </h2>
         </div>
-        <div>
-            <table border>
-                <thead>
-                    <tr >
-                        <th>ID</th><th>Nombre</th><th>Temática</th><th>Estatus</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for(Curso c : model.getCursos()){ %>
-                    <tr>
-                        <td> <%= c.getId() %> </td>
-                        <td><%=c.getNombre()%></td>
-                        <td><%=c.getTematica()%></td>
-                        <td><%=c.getEstatus()%></td>
-                    </tr>
-                    <% } %>
-                </tbody>
-            </table>
+        <div class="grid-container">
+            <% for(Curso c : model.getCursos()){ %>
+                <div class="image-container">
+                    <p> <%= c.getNombre()%> </p>
+                    <a target="_blank" href="/CursosLibres/presentation/grupo/show?id=<%=c.getId()%>">
+                        <%-- <img src=> --%>
+                    </a>
+                </div>
+            <% } %>
         </div>
         <div>
             <br> 
