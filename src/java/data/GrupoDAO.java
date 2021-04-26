@@ -33,10 +33,10 @@ public class GrupoDAO {
     }
     
     public List<Grupo> readAll() throws Exception{
-        List<Grupo> grupos = new ArrayList<>();
         String sql = "select* from grupos";
         PreparedStatement stm = Connection.instance().prepareStatement(sql);
         ResultSet rs = Connection.instance().executeQuery(stm);
+        List<Grupo> grupos = new ArrayList<>();
         while(rs.next()){
             grupos.add(from(rs));
         }
@@ -48,7 +48,7 @@ public class GrupoDAO {
             Curso c = null;
             Profesor p = null;
             try {
-                c = buscarGrupo(rs.getInt("curso"));
+                c = buscarCurso(rs.getInt("curso"));
                 p = readProfesor(rs.getString("profesor"));
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
@@ -64,20 +64,20 @@ public class GrupoDAO {
         }
     }
     
-    public Curso buscarGrupo(int id) throws Exception{
-        String sql = "select* from grupos where id=%s";
+    public Curso buscarCurso(int id) throws Exception{
+        String sql = "select* from cursos where id=%s";
         sql = String.format(sql, id);
         PreparedStatement stm = Connection.instance().prepareStatement(sql);
         ResultSet rs = Connection.instance().executeQuery(stm);
         if(rs.next()){
-            return fromG(rs);
+            return fromCu(rs);
         }
         else{
             return null;
         }
     }
     
-    public Curso fromG (ResultSet rs){
+    public Curso fromCu (ResultSet rs){
         try {
             Curso r = new Curso();
             r.setId(rs.getInt("id"));

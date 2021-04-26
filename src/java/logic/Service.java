@@ -56,11 +56,11 @@ public class Service {
         return curso;
     }
     
-    public List<Profesor> busquedaProfe(Profesor p) throws Exception{
+    public List<Profesor> busquedaProfe(String p) throws Exception{
         List<Profesor> profes = usuarios.readProfes();
         List<Profesor> nuevo = new ArrayList<>();
         for(Profesor profesor : profes){
-            if(profesor.getNombre().contains(p.getNombre()) || profesor.getId().contains(p.getId())){
+            if(profesor.getId().contains(p)){
                 nuevo.add(profesor);
             }
         }
@@ -78,19 +78,14 @@ public class Service {
         return nuevo;
     }
 
-    public List<Grupo> buscarGrupos(int idCurso) {
-        try {
-            List<Grupo> gru = grupos.readAll();
-            List<Grupo> nuevo = new ArrayList<>();
-            for(Grupo grupo: gru){
-                if(grupo.getCurso().equals(idCurso)) {
-                    nuevo.add(grupo);
-                }
+    public List<Grupo> buscarGrupos(int idCurso) throws Exception {
+        List<Grupo> gru = grupos.readAll();
+        List<Grupo> nuevo = new ArrayList<>();
+        for(Grupo grupo: gru){
+            if(grupo.getCurso().equals(idCurso)) {
+                nuevo.add(grupo);
             }
-            return nuevo;
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
         }
-        return null;
+        return nuevo;
     }
 }

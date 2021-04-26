@@ -48,7 +48,6 @@ public class ControllerCurso extends HttpServlet {
             model.setCursos(logic.Service.instancia().busquedaCurso(cadena));
         } catch (Exception ex) {
             ex.getMessage();
-            return "Hubo un error";
         }
         return "/presentation/verCursos/verCursos.jsp";
     }

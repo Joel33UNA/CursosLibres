@@ -39,18 +39,24 @@ public class ControllerGrupo extends HttpServlet {
         String idCurso = request.getParameter("id");
         int idC = Integer.parseInt(idCurso); 
         ModelGrupo model = (ModelGrupo)request.getAttribute("model");
-        List<Grupo> g = logic.Service.instancia().buscarGrupos(idC);
+        List<Grupo> g = null;
+        try {
+            g = logic.Service.instancia().buscarGrupos(idC);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
         if(g!=null){
             model.setGrupos(g);
             request.setAttribute("model", model);
             return "/presentation/grupos/verGrupos.jsp";
         }else{
-            return "";
+            return "/presentation/error.jsp";
         }
     }
 
     private String matricular(HttpServletRequest request) {
-        return null;
+        
+        return "/presentation/login/login.jsp";
     }
 
     private String buscar(HttpServletRequest request) {

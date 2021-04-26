@@ -8,18 +8,15 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 package presentation.profesor;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import logic.Profesor;
-import logic.Usuario;
 
 @WebServlet(name = "ControllerProfe", urlPatterns = {"/presentation/profesor/show",
-                                                     "/presentation/profesor/visualizarprofes"})
+                                                     "/presentation/profesor/visualizarprofes",
+                                                     "/presentation/profesor/buscar"})
 public class ControllerProfe extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -51,13 +48,11 @@ public class ControllerProfe extends HttpServlet {
     
     private String buscar(HttpServletRequest request) {
         ModelProfe model = (ModelProfe)request.getAttribute("model");
-        Profesor p = new Profesor();
-        p.setNombre(request.getParameter("buscar"));
+        String cadena = request.getParameter("buscar");
         try {
-            model.setProfesores(logic.Service.instancia().busquedaProfe(p));
+            model.setProfesores(logic.Service.instancia().busquedaProfe(cadena));
         } catch (Exception ex) {
             ex.getMessage();
-            return "Hubo un error";
         }
         return "/presentation/administrador/verprofesores.jsp";
     }

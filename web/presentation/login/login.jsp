@@ -69,5 +69,4 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
        values.put("password", new String[]{model.getUsuario().getClave()});
        return values;
     }
-
 %>
