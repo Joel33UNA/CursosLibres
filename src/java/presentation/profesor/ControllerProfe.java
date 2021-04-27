@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logic.Grupo;
+import logic.Profesor;
 
 @WebServlet(name = "ControllerProfe", urlPatterns = {"/presentation/profesor/show",
                                                      "/presentation/profesor/visualizarprofes",
@@ -37,9 +38,12 @@ public class ControllerProfe extends HttpServlet {
     
     private String showAction(HttpServletRequest request){
         ModelProfe model = (ModelProfe)request.getAttribute("model");
+        model.setProfesor((Profesor)request.getSession().getAttribute("usuario"));
+        Profesor profe = model.getProfesor();    
         try{
             List<Grupo> grupos = logic.Service.instancia().cargarGrupo(model.getProfesor().getId());
-            request.setAttribute("grupos", grupos);
+            profe.setGrupos(grupos);
+            request.setAttribute("usuario", profe);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

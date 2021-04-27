@@ -6,9 +6,10 @@ ESTUDIANTE: JOEL ZAMORA Y DIEGO JIMÉNEZ
 PROFESOR: JOSE SÁNCHEZ SALAZAR
 --%>
 
+<%@page import="logic.Profesor"%>
 <%@page import="logic.Grupo"%>
 <%@page import="java.util.List"%>
-<% List<Grupo> grupos = (List<Grupo>)request.getAttribute("grupos"); %>
+<% Profesor profe = (Profesor)request.getSession().getAttribute("usuario"); %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,19 +23,21 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     <body>
         <%@ include file="/presentation/header.jsp" %>
         <h1>¡Aquí los grupos disponibles!</h1>
-        <% if (grupos.isEmpty()){%>
+        <% if (profe.getGrupos().isEmpty()){%>
             <h1>Actualmente, usted no posee ningún grupo asignado.</h1>
         <% } %>
-        <% if (!grupos.isEmpty()){ %>
+        <% if (!profe.getGrupos().isEmpty()){ %>
         <table border>
             <thead>
-                <tr><th>Curso</th><td>Horario</td></tr>
+                <tr>
+                    <th>Curso</th><th>Horario</th>
+                </tr>
             </thead>
             <tbody>
-                <% for(Grupo grupo : grupos){ %>
+                <% for(Grupo grupo : profe.getGrupos()){ %>
                     <tr>
-                        <td><% grupo.getCurso().getNombre(); %></td>
-                        <td><% grupo.getHorario(); %></td>
+                        <td><%grupo.getCurso().getNombre();%></td>
+                        <td><%grupo.getHorario();%></td>
                     </tr>
                 <% } %>
             </tbody>
