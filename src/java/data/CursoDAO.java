@@ -31,9 +31,9 @@ public class CursoDAO {
     }
     
     public void add(Curso c) throws Exception{
-        String sql = "insert into cursos (nombre, tematica, estatus) "
-                + "values ('%s', '%s', '%s')";
-        sql = String.format(sql, c.getNombre(), c.getTematica(), c.getEstatus());
+        String sql = "insert into cursos (nombre, tematica, estatus, precio) "
+                + "values ('%s', '%s', '%s', '%s')";
+        sql = String.format(sql, c.getNombre(), c.getTematica(), c.getEstatus(), c.getPrecio());
         PreparedStatement stm1 = Connection.instance().prepareStatement(sql);
         if(Connection.instance().executeUpdate(stm1) == 0){
             throw new Exception("Curso ya existe");
@@ -55,9 +55,10 @@ public class CursoDAO {
         try {
             Curso r = new Curso();
             r.setId(rs.getInt("id"));
-            r.setNombre(rs.getString(("nombre")));
-            r.setTematica(rs.getString(("tematica")));
-            r.setEstatus(rs.getString(("estatus")));
+            r.setNombre(rs.getString("nombre"));
+            r.setTematica(rs.getString("tematica"));
+            r.setEstatus(rs.getString("estatus"));
+            r.setPrecio(rs.getInt("precio"));
             return r;
         } catch (SQLException ex) {
             return null;

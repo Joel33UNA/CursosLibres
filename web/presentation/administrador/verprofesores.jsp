@@ -21,7 +21,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     </head>
     <body>
         <%@ include file="/presentation/header.jsp" %>
-        <form class="form" action="/CursosLibres/presentation/profesor/buscar" method="post">
+        <form class="formulario" action="/CursosLibres/presentation/profesor/buscar" method="post">
             <div>
             <h1>¡Aquí los profesores disponibles!</h1>
             <h2>
@@ -47,7 +47,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         </div>
         <div>
             <br> 
-                Escriba aquí la identificación del profesor que desea buscar: 
+                Escriba aquí el nombre del profesor que desea buscar: 
                 <input  type="text" name="buscar" value=" "></input>
                 <input type="submit" value="Buscar" class="boton"></input>
             </br>

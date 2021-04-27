@@ -74,6 +74,7 @@
     <url-pattern>/presentation/curso/showcursoadd</url-pattern>
     <url-pattern>/presentation/curso/buscar</url-pattern>
     <url-patter>/presentation/curso/agregar</url-patter>
+    <url-patter>/presentation/curso/image</url-patter>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ControllerGrupo</servlet-name>

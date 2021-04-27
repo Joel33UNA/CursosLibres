@@ -9,20 +9,30 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 package presentation.curso;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import logic.Curso;
+import java.io.File;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import logic.Curso;
+import javax.servlet.http.Part;
+
 
 @WebServlet(name = "ControllerCurso", urlPatterns = {"/presentation/curso/visualizarcursos",
                                                      "/presentation/curso/visualizarcursoadmin",
                                                      "/presentation/curso/showcursoadd",
                                                      "/presentation/curso/buscar",
-                                                     "/presentation/curso/agregar"})
+                                                     "/presentation/curso/agregar",
+                                                     "/presentation/cursos/image"})
+@MultipartConfig(location="C:/imagenesProyecto")
 public class ControllerCurso extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -35,6 +45,7 @@ public class ControllerCurso extends HttpServlet {
             case "/presentation/curso/showcursoadd": { viewURL = this.showCurAdd(request); break; }
             case "/presentation/curso/buscar": { viewURL = this.buscar(request); break; }
             case "/presentation/curso/agregar": { viewURL = this.agregar(request); break; }
+            case "/presentation/cursos/image": { viewURL = this.image(request,response); break; }
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
@@ -86,6 +97,7 @@ public class ControllerCurso extends HttpServlet {
             model.getCurso().setNombre(request.getParameter("nombre"));
             model.getCurso().setTematica(request.getParameter("tematica"));
             model.getCurso().setEstatus(request.getParameter("estatus"));
+            model.getCurso().setPrecio(Integer.valueOf(request.getParameter("precio")));
             return this.agregarBD(request);
         }
         else{
@@ -97,12 +109,20 @@ public class ControllerCurso extends HttpServlet {
     private String agregarBD(HttpServletRequest request){
         ModelCurso model = (ModelCurso)request.getAttribute("model");
         try{
+            Part imagen;
             Curso curso = model.getCurso();
             if (!this.validarCredenciales(curso)){
                 throw new Exception();
+            } 
+            try {
+                imagen = request.getPart("imagen");
+                logic.Service.instancia().insertarCurso(curso);            
+                imagen.write(String.valueOf(curso.getId()));
+                request.setAttribute("cursos", logic.Service.instancia().cargarCursos());
+                return "/presentation/curso/visualizarcursoadmin";
+            } catch (Exception ex) {
+                return "/presentation/Error.jsp";
             }
-            logic.Service.instancia().insertarCurso(curso);
-            return "/presentation/curso/visualizarcursoadmin";
         }
         catch(Exception e){
             Map<String, String> errores = new HashMap<>();
@@ -132,6 +152,18 @@ public class ControllerCurso extends HttpServlet {
         cursoBD = logic.Service.instancia().buscarCurso(id);
         return cursoBD == null;
     }
+    
+    private String image(HttpServletRequest request,  HttpServletResponse response) {     
+        String codigo = request.getParameter("codigo");
+        Path path = FileSystems.getDefault().getPath("C:/imagenesProyecto", codigo);
+        try (OutputStream out = response.getOutputStream()) {
+            Files.copy(path, out);
+            out.flush();
+        } catch (IOException e) {
+            return "presentation/error.jsp";
+        }
+        return null;
+    }    
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

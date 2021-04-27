@@ -65,7 +65,7 @@ public class Service {
         List<Profesor> profes = usuarios.readProfes();
         List<Profesor> nuevo = new ArrayList<>();
         for(Profesor profesor : profes){
-            if(profesor.getId().contains(p)){
+            if(profesor.getNombre().contains(p)){
                 nuevo.add(profesor);
             }
         }

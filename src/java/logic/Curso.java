@@ -15,13 +15,15 @@ public class Curso {
     private String nombre;
     private String tematica;
     private String estatus;
+    private int precio;
     private List<Grupo> grupos;
 
-    public Curso(int id, String nombre, String tematica, String estatus, List<Grupo> grupos) {
+    public Curso(int id, String nombre, String tematica, String estatus, int precio, List<Grupo> grupos) {
         this.id = id;
         this.nombre = nombre;
         this.tematica = tematica;
         this.estatus = estatus;
+        this.precio = precio;
         this.grupos = grupos;
     }
 
@@ -30,7 +32,16 @@ public class Curso {
         this.nombre = " ";
         this.tematica = " ";
         this.estatus = " ";
+        this.precio = 0;
         this.grupos = null;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 
     public Integer getId() {

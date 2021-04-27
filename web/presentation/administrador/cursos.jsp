@@ -25,7 +25,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     </head>
     <body>
         <%@ include file="/presentation/header.jsp" %>
-        <form class ="formulario" action="/CursosLibres/presentation/curso/agregar" method="post">
+        <form class ="formulario" enctype="multipart/form-data" action="/CursosLibres/presentation/curso/agregar" method="POST">
             <h2>Registrar curso</h2>
             <div class="sesion">
                 <div class="nombre">
@@ -43,18 +43,28 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                     <input class="<%=comprobarErrores("estatus", errores)%>" type="text"
                           name="estatus" value="<%=form.get("estatus")[0]%>" title="<%=title("estatus", errores)%>">
                 </div>
+                <div class="telefono">
+                    <span>Precio: </span>
+                    <input class="<%=comprobarErrores("precio", errores)%>" type="text"
+                          name="precio" value="<%=form.get("precio")[0]%>" title="<%=title("precio", errores)%>">
+                </div>  
+                <div>
+                    <span>Imagen del curso: </span>
+                    <input type="file" name="imagen">
+                </div>
                 <div>
                     <input type="submit" value="Registrar curso", class="boton">
                 </div>
-            </form>
+            </div>
+        </form>
             <% if (errores != null){ %>
                 <div>
                     <h3 class="errores"><%=title("nombre", errores)%></h3>
                     <h3 class="errores"><%=title("tematica", errores)%></h3>
                     <h3 class="errores"><%=title("estatus", errores)%></h3>
+                    <h3 class="errores"><%=title("precio", errores)%></h3>
                </div>
             <% } %>
-        </div>
         <%@ include file="/presentation/footer.jsp" %>
     </body>
 </html>
@@ -77,6 +87,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
        values.put("nombre", new String[]{model.getCurso().getNombre()});
        values.put("tematica", new String[]{model.getCurso().getTematica()});
        values.put("estatus", new String[]{model.getCurso().getEstatus()});
+       values.put("precio", new String[]{String.valueOf(model.getCurso().getPrecio())});
        return values;
     }
 %>

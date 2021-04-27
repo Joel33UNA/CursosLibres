@@ -24,12 +24,14 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <%@ include file="/presentation/header.jsp" %>
         <h1>¡Aquí los cursos disponibles!</h1>
         <h2>Dele clic al nombre del curso para ver los grupos que corresponden a ese curso.</h2>
-        <div class="grid-container">
+        <form class="formulario" enctype="multipart/form-data">
+            <div class="grid-container">
             <% for(Curso c : model.getCursos()){ %>
                 <div class="image-container">
                     <p> <%= c.getNombre()%> </p>
+                    <p>Precio: <%= c.getPrecio()%> </p>
                     <a target="_blank" href="/CursosLibres/presentation/grupo/show?id=<%=c.getId()%>">
-                        <%-- <img src=> --%>
+                        <img src="CursosLibres/presentation/curso/image?codigo=<%=c.getId()%>">
                     </a>
                 </div>
             <% } %>
@@ -42,6 +44,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
             </br>
             
         </div>
+        </form>
         <%@ include file="/presentation/footer.jsp" %>
     </body>
 </html>
