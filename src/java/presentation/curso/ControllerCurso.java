@@ -117,8 +117,9 @@ public class ControllerCurso extends HttpServlet {
             try {
                 imagen = request.getPart("imagen");
                 logic.Service.instancia().insertarCurso(curso);            
-                imagen.write(String.valueOf(curso.getId()));
                 request.setAttribute("cursos", logic.Service.instancia().cargarCursos());
+                model = (ModelCurso)request.getAttribute("model");
+                imagen.write(String.valueOf(model.getCurso().getId()));
                 return "/presentation/curso/visualizarcursoadmin";
             } catch (Exception ex) {
                 return "/presentation/Error.jsp";
