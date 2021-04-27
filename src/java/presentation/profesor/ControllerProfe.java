@@ -8,11 +8,15 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 package presentation.profesor;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import logic.Grupo;
+import logic.Profesor;
 
 @WebServlet(name = "ControllerProfe", urlPatterns = {"/presentation/profesor/show",
                                                      "/presentation/profesor/visualizarprofes",
@@ -33,6 +37,16 @@ public class ControllerProfe extends HttpServlet {
     }
     
     private String showAction(HttpServletRequest request){
+        ModelProfe model = (ModelProfe)request.getAttribute("model");
+        model.setProfesor((Profesor)request.getSession().getAttribute("usuario"));
+        Profesor profe = model.getProfesor();    
+        try{
+            List<Grupo> grupos = logic.Service.instancia().cargarGrupo(model.getProfesor().getId());
+            profe.setGrupos(grupos);
+            request.setAttribute("usuario", profe);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
         return "/presentation/profesor/grupos.jsp";
     }
     

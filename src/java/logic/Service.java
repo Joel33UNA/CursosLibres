@@ -61,6 +61,17 @@ public class Service {
         return curso;
     }
     
+    public List<Grupo> cargarGrupo(String id) throws Exception{
+        List<Grupo> grupos = this.grupos.readAll();
+        List<Grupo> nuevo = new ArrayList<>();
+        for (Grupo grupo : grupos){
+            if(grupo.getProfesor() != null && grupo.getProfesor().getId().equals(id)){
+                nuevo.add(grupo);
+            }
+        }
+        return nuevo;
+    }
+    
     public List<Profesor> busquedaProfe(String p) throws Exception{
         List<Profesor> profes = usuarios.readProfes();
         List<Profesor> nuevo = new ArrayList<>();
