@@ -23,35 +23,35 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <%@ include file="/presentation/header.jsp" %>
         <form class="formulario" action="/CursosLibres/presentation/profesor/buscar" method="post">
             <div>
-            <h1>¡Aquí los profesores disponibles!</h1>
-            <h2>
-                Si desea matricular los profesores, haga clic <a href="/CursosLibres/presentation/administrador/showprof">aquí</a>.
-            </h2>
-        </div>
-        <div>
-            <table border>
-                <thead>
-                    <tr >
-                        <th>ID</th> <th>Nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for(Profesor p : model.getProfesores()){ %>
-                    <tr>
-                        <td> <%= p.getId() %> </td>
-                        <td><a href="/"> <%= p.getNombre() %> </a></td> 
-                    </tr>
-                    <% } %>
-                </tbody>
-            </table>
-        </div>
-        <div>
-            <br> 
-                Escriba aquí el nombre del profesor que desea buscar: 
-                <input  type="text" name="buscar" value=" "></input>
-                <input type="submit" value="Buscar" class="boton"></input>
-            </br>
-        </div>
+                <h1>¡Aquí los profesores disponibles!</h1>
+                <h2>
+                    Si desea matricular los profesores, haga clic <a href="/CursosLibres/presentation/administrador/showprof">aquí</a>.
+                </h2>
+            </div>
+            <div>
+                <table border>
+                    <thead>
+                        <tr >
+                            <th>ID</th> <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(Profesor p : model.getProfesores()){ %>
+                        <tr>
+                            <td> <%= p.getId() %> </td>
+                            <td><a href="/"> <%= p.getNombre() %> </a></td> 
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <br> 
+                    Escriba aquí el nombre del profesor que desea buscar: 
+                    <input  type="text" name="buscar" value=" "></input>
+                    <input type="submit" value="Buscar" class="boton"></input>
+                </br>
+            </div>
         <%@ include file="/presentation/footer.jsp" %>
         </form>
     </body>
