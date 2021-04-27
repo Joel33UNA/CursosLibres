@@ -32,7 +32,6 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                 <% } %>
                 <% if (usuario.getRol().equals("profesor")){%>
                     <li><a href="/CursosLibres/presentation/profesor/show"">Grupos a cargo</a></li>
-                    <li><a href="/">Registrar notas</a></li>
                     <li><a href="/CursosLibres/presentation/login/logout">Cerrar sesión</a></li>
                 <% } %>
                 <% if (usuario.getRol().equals("administrador")){%>  

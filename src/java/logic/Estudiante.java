@@ -12,16 +12,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Estudiante extends Usuario {
-    private List<GrupoEstudiante> grupos;
-
+    
     public Estudiante() {
-    }
-
-    public List<GrupoEstudiante> getGrupos() {
-        return grupos;
-    }
-
-    public void setGrupos(List<GrupoEstudiante> grupos) {
-        this.grupos = grupos;
+        super();
     }
 }
