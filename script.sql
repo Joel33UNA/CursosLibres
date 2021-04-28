@@ -34,6 +34,7 @@ create table cursos(
     nombre varchar(45),
     tematica varchar(45),
     estatus varchar(45),
+    precio int,
     primary key (id)
 );
 
