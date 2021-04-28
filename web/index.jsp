@@ -27,13 +27,15 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <form class="formulario" enctype="multipart/form-data">
             <div class="grid-container">
             <% for(Curso c : model.getCursos()){ %>
-                <div class="image-container">
-                    <p> <%= c.getNombre()%> </p>
-                    <p>Precio: <%= c.getPrecio()%> </p>
-                    <a target="_blank" href="/CursosLibres/presentation/grupo/show?id=<%=c.getId()%>">
-                        <img src="CursosLibres/presentation/curso/image?codigo=<%=c.getId()%>">
-                    </a>
-                </div>
+                <%if(c.getEstatus().equals("en oferta")){%>
+                    <div class="image-container">
+                        <p> <%= c.getNombre()%> </p>
+                        <p>Precio: <%= c.getPrecio()%> </p>
+                        <a target="_blank" href="/CursosLibres/presentation/grupo/show?id=<%=c.getId()%>">
+                            <img src="CursosLibres/presentation/curso/image?codigo=<%=c.getId()%>">
+                        </a>
+                    </div>
+                <%}%>
             <% } %>
         </div>
         <div>
