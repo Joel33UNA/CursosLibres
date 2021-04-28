@@ -20,6 +20,7 @@ import logic.Administrador;
 @WebServlet(name = "ControllerAdmin", urlPatterns = {"/presentation/administrador/show",
                                                      "/presentation/administrador/showprof",
                                                      "/presentation/administrador/showcur",
+                                                     "/presentation/administrador/showgru",
                                                     "/presentation/admministrador/signin"})
 public class ControllerAdmin extends HttpServlet {
     
@@ -33,6 +34,7 @@ public class ControllerAdmin extends HttpServlet {
             case "/presentation/administrador/show": { viewURL = this.showAction(request); break; }
             case "/presentation/administrador/showprof": { viewURL = this.showSignin(request); break; }
             case "/presentation/administrador/showcur": { viewURL = this.showCur(request); break; }
+            case "/presentation/administrador/showgru": { viewURL = this.showGru(request); break; }
             case "/presentation/admministrador/signin": { viewURL = this.signin(request); break; }
             default: { viewURL = ""; break; }
         }
@@ -49,6 +51,10 @@ public class ControllerAdmin extends HttpServlet {
     
     private String showCur(HttpServletRequest request){
         return "/presentation/curso/show";
+    }
+    
+    private String showGru(HttpServletRequest request){
+        return "/presentation/grupo/showadm";
     }
     
     private String signin(HttpServletRequest request){

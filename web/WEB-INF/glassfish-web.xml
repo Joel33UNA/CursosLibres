@@ -50,6 +50,7 @@
     <url-pattern>/presentation/administrador/showprof</url-pattern>
     <url-pattern>/presentation/administrador/showcur</url-pattern>
     <url-pattern>/presentation/administrador/signin</url-pattern>
+    <url-patter>/presentation/administrador/showgru</url-patter>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ControllerProfe</servlet-name>
@@ -79,8 +80,11 @@
   <servlet-mapping>
     <servlet-name>ControllerGrupo</servlet-name>
     <url-pattern>/presentation/grupo/show</url-pattern>
+    <url-pattern>/presentation/grupo/showgrupoadd</url-pattern>
+    <url-pattern>/presentation/grupo/showadm</url-pattern>
     <url-pattern>/presentation/grupo/matricula</url-pattern>
     <url-pattern>/presentation/grupo/buscar</url-pattern>
+    <url-pattern>/presentation/grupo/agregar</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>

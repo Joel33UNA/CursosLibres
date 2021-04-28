@@ -21,7 +21,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css"/>
         <link href="${pageContext.request.contextPath}/css/form.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Administrar grupos</title>
+        <title>Agregar curso</title>
     </head>
     <body>
         <%@ include file="/presentation/header.jsp" %>
@@ -31,22 +31,22 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                 <div class="nombre">
                     <span>Nombre del curso: </span>
                     <input class="<%=comprobarErrores("nombre", errores)%>" type="text"
-                        name="nombre" value="<%=form.get("nombre")[0]%>" title="<%=title("nombre", errores)%>">
+                        name="nombre" value="<%=form.get("nombre")[0]%>">
                 </div>
-                <div class="">
+                <div class="tematica">
                     <span>Temática: </span>
                     <input class="<%=comprobarErrores("tematica", errores)%>" type="text"
-                           name="tematica" value="<%=form.get("tematica")[0]%>" title="<%=title("tematica", errores)%>">
+                           name="tematica" value="<%=form.get("tematica")[0]%>">
                 </div>
                 <div class="telefono">
                     <span>Estatus: </span>
                     <input class="<%=comprobarErrores("estatus", errores)%>" type="text"
-                          name="estatus" value="<%=form.get("estatus")[0]%>" title="<%=title("estatus", errores)%>">
+                          name="estatus" value="<%=form.get("estatus")[0]%>">
                 </div>
                 <div class="telefono">
                     <span>Precio: </span>
                     <input class="<%=comprobarErrores("precio", errores)%>" type="text"
-                          name="precio" value="<%=form.get("precio")[0]%>" title="<%=title("precio", errores)%>">
+                          name="precio" value="<%=form.get("precio")[0]%>">
                 </div>  
                 <div>
                     <span>Imagen del curso: </span>

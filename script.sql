@@ -31,7 +31,7 @@ create table estudiantes(
 
 create table cursos(
     id int not null AUTO_INCREMENT,
-    nombre varchar(45),
+    nombre varchar(45), unique
     tematica varchar(45),
     estatus varchar(45),
     precio int,

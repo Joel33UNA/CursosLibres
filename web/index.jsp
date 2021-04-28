@@ -31,8 +31,8 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                     <div class="image-container">
                         <p> <%= c.getNombre()%> </p>
                         <p>Precio: <%= c.getPrecio()%> </p>
-                        <a target="_blank" href="/CursosLibres/presentation/grupo/show?id=<%=c.getId()%>">
-                            <img src="CursosLibres/presentation/curso/image?codigo=<%=c.getId()%>">
+                        <a href="/CursosLibres/presentation/grupo/show?id=<%=c.getId()%>">
+                            <img src="CursosLibres/presentation/curso/image?nombre=<%=c.getNombre()%>">
                         </a>
                     </div>
                 <%}%>

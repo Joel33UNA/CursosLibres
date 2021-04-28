@@ -27,6 +27,15 @@ public class Usuario implements Serializable {
         this.correo = "";
         this.telefono = 0;
     }
+    
+    public Usuario(String id){
+        this.id = id;
+        this.nombre = "";
+        this.rol = "";
+        this.clave = "";
+        this.correo = "";
+        this.telefono = 0;
+    }
 
     public String getId() {
         return id;

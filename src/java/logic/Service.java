@@ -38,12 +38,21 @@ public class Service {
         return usuario;
     }
     
+    public Profesor buscarProfesor(String id) throws Exception{
+        Profesor profesor = usuarios.readProfesor(id);
+        return profesor;
+    }   
+    
     public void insertarUsuario(Usuario usuario) throws Exception{
         usuarios.signin(usuario);
     }
     
     public void insertarCurso(Curso curso) throws Exception{
         cursos.add(curso);
+    }
+    
+    public void insertarGrupo(Grupo grupo) throws Exception{
+        grupos.add(grupo);
     }
     
     public List<Curso> cargarCursos() throws Exception{
@@ -59,6 +68,11 @@ public class Service {
     public Curso buscarCurso(int id) throws Exception{
         Curso curso = cursos.readCurso(id);
         return curso;
+    }
+    
+    public Grupo buscarGrupo(int id) throws Exception{
+        Grupo grupo = grupos.readGrupo(id);
+        return grupo;
     }
     
     public List<Grupo> cargarGrupo(String id) throws Exception{

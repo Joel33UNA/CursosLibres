@@ -119,7 +119,7 @@ public class ControllerCurso extends HttpServlet {
                 logic.Service.instancia().insertarCurso(curso);            
                 request.setAttribute("cursos", logic.Service.instancia().cargarCursos());
                 model = (ModelCurso)request.getAttribute("model");
-                imagen.write(String.valueOf(model.getCurso().getId()));
+                imagen.write(model.getCurso().getNombre());
                 return "/presentation/curso/visualizarcursoadmin";
             } catch (Exception ex) {
                 return "/presentation/Error.jsp";
@@ -144,6 +144,9 @@ public class ControllerCurso extends HttpServlet {
         if(request.getParameter("estatus").isEmpty()){
             errores.put("estatus", "El estatus es inválido");
         }
+        if(request.getParameter("precio").isEmpty() || !request.getParameter("precio").matches("[+-]?\\d*(\\.\\d+)?")){
+            errores.put("precio", "El precio es inválido");
+        }
         return errores;
     }
     
@@ -155,7 +158,7 @@ public class ControllerCurso extends HttpServlet {
     }
     
     private String image(HttpServletRequest request,  HttpServletResponse response) {     
-        String codigo = request.getParameter("codigo");
+        String codigo = request.getParameter("nombre");
         Path path = FileSystems.getDefault().getPath("C:/imagenesProyecto", codigo);
         try (OutputStream out = response.getOutputStream()) {
             Files.copy(path, out);

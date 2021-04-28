@@ -18,6 +18,11 @@ public class Profesor extends Usuario {
         this.grupos = new ArrayList<>(); 
     }
     
+    public Profesor(String id){
+        super(id);
+        this.grupos = new ArrayList<>(); 
+    }
+    
     public List<Grupo> getGrupos(){
         return this.grupos;
     }

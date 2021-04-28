@@ -6,7 +6,6 @@ ESTUDIANTE: JOEL ZAMORA Y DIEGO JIMÉNEZ
 PROFESOR: JOSE SÁNCHEZ SALAZAR
 --%>
 
-
 <%@page import="logic.Grupo"%>
 <%@page import="presentation.grupo.ModelGrupo"%>
 <% ModelGrupo model = (ModelGrupo)request.getAttribute("model"); %>
@@ -18,12 +17,14 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css"/>
         <link href="${pageContext.request.contextPath}/css/curso.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Grupos</title>
+        <title>Administrar grupos</title>
     </head>
     <body>
         <%@ include file="/presentation/header.jsp" %>
         <h1>Aquí los grupos disponibles del curso seleccionado</h1>
-        <h2>Dele clic al horario del grupo para matricular si así lo desea.</h2>
+        <h2>
+            Si desea agregar un nuevo grupo haga click <a href='/CursosLibres/presentation/grupo/showgrupoadd'>aqui</a>.
+        </h2>
         <form class="formulario" action="/CursosLibres/presentation/grupo/matricula" method="post">
             <table border>
                 <thead>
