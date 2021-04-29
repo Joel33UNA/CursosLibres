@@ -50,6 +50,8 @@ public class ControllerGrupo extends HttpServlet {
         String idCurso = request.getParameter("id");
         int idC = Integer.parseInt(idCurso); 
         ModelGrupo model = (ModelGrupo)request.getAttribute("model");
+        request.setAttribute("curso", idCurso);
+        model.getGrupo().setCurso(new Curso(idC));
         List<Grupo> g = new ArrayList<>();
         try {
             g = logic.Service.instancia().buscarGrupos(idC);
@@ -63,6 +65,10 @@ public class ControllerGrupo extends HttpServlet {
     
     private String showGruAdd(HttpServletRequest request){
         ModelGrupo model = (ModelGrupo)request.getAttribute("model");
+        String curso = request.getParameter("id");
+        int idC = Integer.valueOf(curso);
+        model.getGrupo().setCurso(new Curso(idC));
+        request.setAttribute("model", model);
         model.getGrupo().setHorario("");
         model.getGrupo().setProfesor(new Profesor());
         return "/presentation/administrador/grupos.jsp";
@@ -72,6 +78,7 @@ public class ControllerGrupo extends HttpServlet {
         String idCurso = request.getParameter("id");
         int idC = Integer.parseInt(idCurso); 
         ModelGrupo model = (ModelGrupo)request.getAttribute("model");
+        model.getGrupo().setCurso(new Curso(idC));
         List<Grupo> g = new ArrayList<>();
         try {
             g = logic.Service.instancia().buscarGrupos(idC);
@@ -109,13 +116,12 @@ public class ControllerGrupo extends HttpServlet {
         ModelGrupo model = (ModelGrupo)request.getAttribute("model");
         Grupo grupo = model.getGrupo();
         try {
-            String id = request.getParameter("id");
-            int idC = Integer.valueOf(id);
-            grupo.setCurso(logic.Service.instancia().buscarCurso(idC));
+            int id = Integer.valueOf(request.getParameter("id"));
+            grupo.setCurso(logic.Service.instancia().buscarCurso(id));
             if(this.validarCredenciales(grupo)){
                 throw new Exception();
             }
-            grupo.setProfesor(logic.Service.instancia().buscarProfesor(id));
+            grupo.setProfesor(logic.Service.instancia().buscarProfesor(request.getParameter("profesor")));
             logic.Service.instancia().insertarGrupo(grupo);            
             //request.setAttribute("grupos", logic.Service.instancia().cargarGrupos());
             return "/presentation/administrador/showgru?id=" + id;

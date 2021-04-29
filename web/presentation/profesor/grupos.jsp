@@ -6,9 +6,11 @@ ESTUDIANTE: JOEL ZAMORA Y DIEGO JIMÉNEZ
 PROFESOR: JOSE SÁNCHEZ SALAZAR
 --%>
 
+<%@page import="presentation.grupo.ModelGrupo"%>
 <%@page import="logic.Profesor"%>
 <%@page import="logic.Grupo"%>
 <%@page import="java.util.List"%>
+
 <% Profesor profe = (Profesor)request.getSession().getAttribute("usuario"); %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

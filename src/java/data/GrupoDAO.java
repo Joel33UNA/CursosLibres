@@ -46,7 +46,7 @@ public class GrupoDAO {
     public void add(Grupo g) throws Exception{
         String sql = "insert into grupos (horario, curso, profesor) "
                 + "values ('%s', '%s', '%s')";
-        sql = String.format(sql, g.getHorario(), g.getCurso(), g.getProfesor().getId());
+        sql = String.format(sql, g.getHorario(), g.getCurso().getId(), g.getProfesor().getId());
         PreparedStatement stm1 = Connection.instance().prepareStatement(sql);
         if(Connection.instance().executeUpdate(stm1) == 0){
             throw new Exception("Grupo ya existe");
