@@ -18,7 +18,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import logic.Curso;
 import logic.Grupo;
 import logic.Profesor;
 
@@ -117,7 +116,6 @@ public class ControllerGrupo extends HttpServlet {
             }
             grupo.setProfesor(logic.Service.instancia().buscarProfesor(id));
             logic.Service.instancia().insertarGrupo(grupo);            
-            //request.setAttribute("grupos", logic.Service.instancia().cargarGrupos());
             return "/presentation/administrador/showgru?id=" + id;
         } catch (Exception ex) {
             Map<String, String> errores = new HashMap<>();
