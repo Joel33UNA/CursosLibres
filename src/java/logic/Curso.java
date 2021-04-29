@@ -35,6 +35,15 @@ public class Curso {
         this.precio = 0;
         this.grupos = null;
     }
+    
+    public Curso(int id){
+        this.id = id;
+        this.nombre = " ";
+        this.tematica = " ";
+        this.estatus = " ";
+        this.precio = 0;
+        this.grupos = null;
+    }
 
     public int getPrecio() {
         return precio;

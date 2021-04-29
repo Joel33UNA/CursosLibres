@@ -6,9 +6,11 @@ ESTUDIANTE: JOEL ZAMORA Y DIEGO JIMÉNEZ
 PROFESOR: JOSE SÁNCHEZ SALAZAR
 --%>
 
+<%@page import="presentation.grupo.ModelGrupo"%>
 <%@page import="logic.Profesor"%>
 <%@page import="logic.Grupo"%>
 <%@page import="java.util.List"%>
+
 <% Profesor profe = (Profesor)request.getSession().getAttribute("usuario"); %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,7 +18,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <html>
     <head>
         <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css"/>
-        <link href="${pageContext.request.contextPath}/css/profesor.css" rel="stylesheet" type="text/css"/>
+        <link href="${pageContext.request.contextPath}/css/curso.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Grupos a cargo</title>
     </head>
@@ -36,8 +38,8 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
             <tbody>
                 <% for(Grupo grupo : profe.getGrupos()){ %>
                     <tr>
-                        <td><%grupo.getCurso().getNombre();%></td>
-                        <td><%grupo.getHorario();%></td>
+                        <td><a href="/CursosLibres/presentation/"><%=grupo.getCurso().getNombre()%></a></td>
+                        <td><%=grupo.getHorario()%></td>
                     </tr>
                 <% } %>
             </tbody>

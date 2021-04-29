@@ -19,7 +19,6 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
             <% if (usuario==null){%>
                 <li><a href="/CursosLibres/presentation/curso/visualizarcursos">Inicio</a></li>
                 <li><a href="/CursosLibres/presentation/login/show">Iniciar sesión</a></li>
-                <li><a href="/CursosLibres/presentation/signin/show">Registrarse</a></li>
             <% } %>
             <% if (usuario!=null){%>
                 <li><a href="/CursosLibres/presentation/login/infoUsuario?id=<%=usuario.getId()%>"> Usuario: <%= usuario.getNombre() %> </a></li>

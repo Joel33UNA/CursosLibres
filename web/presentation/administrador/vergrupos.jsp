@@ -23,7 +23,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <%@ include file="/presentation/header.jsp" %>
         <h1>Aquí los grupos disponibles del curso seleccionado</h1>
         <h2>
-            Si desea agregar un nuevo grupo haga click <a href='/CursosLibres/presentation/grupo/showgrupoadd'>aqui</a>.
+            Si desea agregar un nuevo grupo haga click <a href='/CursosLibres/presentation/grupo/showgrupoadd?id=<%=model.getGrupo().getCurso().getId()%>'>aqui</a>.
         </h2>
         <form class="formulario" action="/CursosLibres/presentation/grupo/matricula" method="post">
             <table border>
@@ -35,8 +35,8 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                 <tbody>
                     <% for(Grupo grupo : model.getGrupos()){ %>
                     <tr>
-                        <td> <%= grupo.getId() %> </td>
-                        <td><a href="/presentation/grupo/matricula"> <%= grupo.getHorario() %> </a></td>
+                        <td><%= grupo.getId() %></td>
+                        <td><%= grupo.getHorario() %></td>
                         <td>
                             <% if (grupo.getProfesor() != null) { %>    
                                 <%= grupo.getProfesor().getNombre() %> 

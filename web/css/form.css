@@ -79,3 +79,8 @@ div.sesion > div{
     text-align: center;
     padding: 10px;
 }
+
+div.sesion > div.signin p{
+    text-align: center;
+    font-size: 30px;
+}
