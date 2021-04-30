@@ -28,7 +28,7 @@ public class CursoDAO {
         else{
             return null;
         }
-    }
+    }  
     
     public void add(Curso c) throws Exception{
         String sql = "insert into cursos (nombre, tematica, estatus, precio) "
@@ -62,6 +62,18 @@ public class CursoDAO {
             return r;
         } catch (SQLException ex) {
             return null;
+        }
+    }
+
+    public void updateEst(Curso c) throws Exception {
+        String sql="update cursos set estatus=? "+
+                "where id=?";
+        PreparedStatement stm = Connection.instance().prepareStatement(sql);
+        stm.setString(1, c.getEstatus());
+        stm.setString(2, String.valueOf(c.getId()));        
+        int count = Connection.instance().executeUpdate(stm);
+        if (count == 0){
+            throw new Exception("Curso no existe");
         }
     }
 }

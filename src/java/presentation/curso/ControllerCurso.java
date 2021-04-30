@@ -16,7 +16,6 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import logic.Curso;
-import java.io.File;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +30,9 @@ import javax.servlet.http.Part;
                                                      "/presentation/curso/showcursoadd",
                                                      "/presentation/curso/buscar",
                                                      "/presentation/curso/agregar",
-                                                     "/presentation/cursos/image"})
+                                                     "/presentation/cursos/image",
+                                                     "/presentation/curso/cambiarEstatus",
+                                                     "/presentation/curso/enviarCambioEstatus"})
 @MultipartConfig(location="C:/imagenesProyecto")
 public class ControllerCurso extends HttpServlet {
 
@@ -46,6 +47,8 @@ public class ControllerCurso extends HttpServlet {
             case "/presentation/curso/buscar": { viewURL = this.buscar(request); break; }
             case "/presentation/curso/agregar": { viewURL = this.agregar(request); break; }
             case "/presentation/cursos/image": { viewURL = this.image(request,response); break; }
+            case "/presentation/curso/cambiarEstatus": { viewURL = this.cambiarEstatus(request); break; }
+            case "/presentation/curso/enviarCambioEstatus": { viewURL = this.enviarCambioEstatus(request); break;}
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
@@ -168,6 +171,29 @@ public class ControllerCurso extends HttpServlet {
         }
         return null;
     }    
+    
+    private String cambiarEstatus(HttpServletRequest request) {
+        ModelCurso model = (ModelCurso)request.getAttribute("model");
+        try {
+            model.setCursos(logic.Service.instancia().cargarCursos());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return "/presentation/administrador/cambiarEstatus.jsp";
+    }
+    
+    private String enviarCambioEstatus(HttpServletRequest request) {
+        ModelCurso model = (ModelCurso)request.getAttribute("model");
+        try {
+            String idCurso = request.getParameter("id");
+            int idC = Integer.valueOf(idCurso);
+            logic.Service.instancia().updateEstatus(idC);
+            model.setCursos(logic.Service.instancia().cargarCursos());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return "/presentation/administrador/cambiarEstatus.jsp";
+    }
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

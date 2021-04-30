@@ -46,3 +46,9 @@ footer{
   color: bisque;
   text-align: center;
 }
+
+body{
+    background: url(../images/background.jpg);
+    background-position: center;
+    background-size: cover;
+}
