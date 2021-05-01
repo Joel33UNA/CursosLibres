@@ -25,7 +25,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     </head>
     <body>
         <%@ include file="/presentation/header.jsp" %>
-        <form class ="formulario" action="/CursosLibres/presentation/curso/agregar" method="POST">
+        <form class ="formulario" enctype="multipart/form-data" action="/CursosLibres/presentation/curso/agregar" method="POST">
             <h2>Registrar curso</h2>
             <div class="sesion">
                 <div class="nombre">

@@ -37,6 +37,10 @@
     <servlet-name>ControllerGrupo</servlet-name>
     <servlet-class>presentation.grupo.ControllerGrupo</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ControllerGrupoEst</servlet-name>
+    <servlet-class>presentation.grupoestudiante.ControllerGrupoEst</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>ControllerLogin</servlet-name>
     <url-pattern>/presentation/login/show</url-pattern>
@@ -88,6 +92,10 @@
     <url-pattern>/presentation/grupo/matricula</url-pattern>
     <url-pattern>/presentation/grupo/buscar</url-pattern>
     <url-pattern>/presentation/grupo/agregar</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ControllerGrupoEst</servlet-name>
+    <url-pattern>/presentation/grupoEstudiante/historial</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>

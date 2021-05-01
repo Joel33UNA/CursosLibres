@@ -15,20 +15,23 @@ public class GrupoEstudiante {
     private int nota;
     private Estudiante estudiante;
     private Grupo grupo;
-    private int idMatricula;
 
-    public GrupoEstudiante(int nota, Estudiante estudiante, Grupo grupo, int idMatricula) {
+    public GrupoEstudiante(int nota, Estudiante estudiante, Grupo grupo) {
         this.nota = nota;
         this.estudiante = estudiante;
         this.grupo = grupo;
-        this.idMatricula = idMatricula;
     }
     
     public GrupoEstudiante() {
         this.nota = 0;
         this.estudiante = null;
         this.grupo = null;
-        this.idMatricula = 0;
+    }
+
+    public GrupoEstudiante(Estudiante est) {
+        this.nota = 0;
+        this.estudiante = est;
+        this.grupo = null;
     }
 
     public int getNota() {
@@ -55,14 +58,6 @@ public class GrupoEstudiante {
         this.grupo = grupo;
     }
 
-    public int getIdMatricula() {
-        return idMatricula;
-    }
-
-    public void setIdMatricula(int idMatricula) {
-        this.idMatricula = idMatricula;
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
@@ -82,9 +77,6 @@ public class GrupoEstudiante {
         }
         final GrupoEstudiante other = (GrupoEstudiante) obj;
         if (this.nota != other.nota) {
-            return false;
-        }
-        if (this.idMatricula != other.idMatricula) {
             return false;
         }
         if (!Objects.equals(this.estudiante, other.estudiante)) {
