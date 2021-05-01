@@ -54,12 +54,15 @@
     <url-pattern>/presentation/administrador/showprof</url-pattern>
     <url-pattern>/presentation/administrador/showcur</url-pattern>
     <url-pattern>/presentation/administrador/signin</url-pattern>
-    <url-patter>/presentation/administrador/showgru</url-patter>
+    <url-pattern>/presentation/administrador/showgru</url-pattern>
+    <url-pattern>/presentation/administrador/cambiarEstatus</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ControllerProfe</servlet-name>
     <url-pattern>/presentation/profesor/show</url-pattern>
     <url-pattern>/presentation/profesor/visualizarprofes</url-pattern>
+    <url-pattern>/presentation/profesor/buscar</url-pattern>
+    <url-pattern>/presentation/profesor/estudiantes</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ControllerSignin</servlet-name>
@@ -72,15 +75,19 @@
     <servlet-name>ControllerEst</servlet-name>
     <url-pattern>/presentation/estudiante/show</url-pattern>
     <url-pattern>/presentation/estudiante/showgru</url-pattern>
+    <url-pattern>/presentation/estudiante/historial</url-pattern>
+    <url-pattern>/presentation/estudiante/showestudiantes</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ControllerCurso</servlet-name>
     <url-pattern>/presentation/curso/visualizarcursos</url-pattern>
-    <url-patter>/presentation/curso/visualizarcursoadmin</url-patter>
+    <url-pattern>/presentation/curso/visualizarcursoadmin</url-pattern>
     <url-pattern>/presentation/curso/showcursoadd</url-pattern>
     <url-pattern>/presentation/curso/buscar</url-pattern>
-    <url-patter>/presentation/curso/agregar</url-patter>
-    <url-patter>/presentation/curso/image</url-patter>
+    <url-pattern>/presentation/curso/agregar</url-pattern>
+    <url-pattern>/presentation/curso/image</url-pattern>
+    <url-pattern>/presentation/curso/cambiarEstatus</url-pattern>
+    <url-pattern>/presentation/curso/enviarCambioEstatus</url-pattern>
     <url-pattern>/presentation/curso/matricularshow</url-pattern>
   </servlet-mapping>
   <servlet-mapping>

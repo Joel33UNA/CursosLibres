@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import logic.Curso;
+import logic.Estudiante;
 import logic.Grupo;
 import logic.Profesor;
 
@@ -30,6 +31,19 @@ public class GrupoDAO {
         else{
             return null;
         }
+    }
+    
+    public List<Estudiante> readGruposEstudiantes(int id) throws Exception{
+        List<Estudiante> estudiantes = new ArrayList<>();
+        String sql = "select* from gruposestudiantes ge inner join usuarios u "
+                + "on ge.id_estudiante=u.id and id_grupo=%s";
+        sql = String.format(sql, id);
+        PreparedStatement stm = Connection.instance().prepareStatement(sql);
+        ResultSet rs = Connection.instance().executeQuery(stm);
+        while(rs.next()){
+            estudiantes.add(fromEstudiante(rs));
+        }
+        return estudiantes;
     }
     
     public List<Grupo> readAll() throws Exception{
@@ -129,4 +143,21 @@ public class GrupoDAO {
             return null;
         }
     }
+
+    private Estudiante fromEstudiante(ResultSet rs) {
+        try{
+            Estudiante e = new Estudiante();
+            e.setRol("estudiante");
+            e.setId(rs.getString("id"));
+            e.setClave(rs.getString("clave"));
+            e.setNombre(rs.getString("nombre"));
+            e.setCorreo(rs.getString("correo"));
+            e.setTelefono(rs.getLong("telefono"));
+            return e;
+        }
+        catch(SQLException ex){
+            return null;
+        }
+    }
+    
 }

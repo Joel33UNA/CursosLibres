@@ -101,13 +101,24 @@ public class UsuarioDAO {
     
     public List<Profesor> readProfes() throws Exception{
         List<Profesor> profesores = new ArrayList<>();
-        String sql = "select* from profesores p join usuarios u on p.id = u.id;";
+        String sql = "select* from profesores p inner join usuarios u on p.id = u.id";
         PreparedStatement stm = Connection.instance().prepareStatement(sql);
         ResultSet rs = Connection.instance().executeQuery(stm);
         while(rs.next()){
             profesores.add(fromProfesor(rs));
         }
         return profesores;
+    }
+    
+    public List<Estudiante> readEstudiantes() throws Exception{
+        List<Estudiante> estudiantes = new ArrayList<>();
+        String sql = "select* from estudiantes e inner join usuarios u on e.id = u.id";
+        PreparedStatement stm = Connection.instance().prepareStatement(sql);
+        ResultSet rs = Connection.instance().executeQuery(stm);
+        while(rs.next()){
+            estudiantes.add(fromEstudiante(rs));
+        }
+        return estudiantes;
     }
     
     public void signin(Usuario u) throws Exception{

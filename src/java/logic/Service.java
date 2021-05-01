@@ -135,4 +135,19 @@ public class Service {
         }
         return nuevo;
     }
+    
+    public List<Estudiante> buscarEstudiantes(int idGrupo) throws Exception {
+        List<Estudiante> estudiantes = this.grupos.readGruposEstudiantes(idGrupo);
+        return estudiantes;
+    }
+
+    public void updateEstatus(int idC) throws Exception {
+        Curso c = cursos.readCurso(idC);
+        if(c.getEstatus().equals("en oferta")){
+            c.setEstatus("sin oferta");
+        }else{
+            c.setEstatus("en oferta");
+        }
+        cursos.updateEst(c);
+    }
 }

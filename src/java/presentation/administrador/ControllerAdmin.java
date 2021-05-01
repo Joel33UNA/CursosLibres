@@ -21,6 +21,7 @@ import logic.Administrador;
                                                      "/presentation/administrador/showprof",
                                                      "/presentation/administrador/showcur",
                                                      "/presentation/administrador/showgru",
+                                                     "/presentation/administrador/cambiarEstatus",
                                                     "/presentation/admministrador/signin"})
 public class ControllerAdmin extends HttpServlet {
     
@@ -36,6 +37,7 @@ public class ControllerAdmin extends HttpServlet {
             case "/presentation/administrador/showcur": { viewURL = this.showCur(request); break; }
             case "/presentation/administrador/showgru": { viewURL = this.showGru(request); break; }
             case "/presentation/admministrador/signin": { viewURL = this.signin(request); break; }
+            case "/presentation/administrador/cambiarEstatus": {viewURL = this.cambiarEstatus(request); break; }
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
@@ -54,11 +56,16 @@ public class ControllerAdmin extends HttpServlet {
     }
     
     private String showGru(HttpServletRequest request){
-        return "/presentation/grupo/showadm?id=" + request.getParameter("id");
+        return "/presentation/grupo/showadm?id=" + 
+                request.getParameter("id");
     }
     
     private String signin(HttpServletRequest request){
         return "/presentation/signin/signinprof";
+    }
+    
+    private String cambiarEstatus(HttpServletRequest request) {
+        return "/presentation/curso/cambiarEstatus";
     }
 
     @Override

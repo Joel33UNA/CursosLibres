@@ -77,9 +77,9 @@ public class ControllerGrupo extends HttpServlet {
     }
     
     private String showActionAdm(HttpServletRequest request){
+        ModelGrupo model = (ModelGrupo)request.getAttribute("model");
         String idCurso = request.getParameter("id");
         int idC = Integer.parseInt(idCurso); 
-        ModelGrupo model = (ModelGrupo)request.getAttribute("model");
         model.getGrupo().setCurso(new Curso(idC));
         List<Grupo> g = new ArrayList<>();
         try {
@@ -125,7 +125,6 @@ public class ControllerGrupo extends HttpServlet {
             }
             grupo.setProfesor(logic.Service.instancia().buscarProfesor(request.getParameter("profesor")));
             logic.Service.instancia().insertarGrupo(grupo);            
-            //request.setAttribute("grupos", logic.Service.instancia().cargarGrupos());
             return "/presentation/administrador/showgru?id=" + id;
         } catch (Exception ex) {
             Map<String, String> errores = new HashMap<>();

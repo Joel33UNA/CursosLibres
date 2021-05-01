@@ -23,9 +23,9 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <%@ include file="/presentation/header.jsp" %>
         <form class="formulario" enctype="multipart/form-data" action="/CursosLibres/presentation/curso/buscar" method="post">
             <div>
-            <h1>¡Aquí los cursos disponibles!</h1>
+            <h1>¡Aquí los cursos en oferta!</h1>
             <h2>
-                Si desea agregar un nuevo curso, haga clic <a href="/CursosLibres/presentation/curso/showcursoadd">aquí</a>.
+                Si desea agregar un nuevo curso, haga clic <a href="/CursosLibres/presentation/curso/showcursoadd">aquí.</a>
             </h2>
         </div>
         <div class="grid-container">
@@ -47,6 +47,11 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                 <input  type="text" name="buscar" value=" "></input>
                 <input type="submit" value="Buscar" class="boton"></input>
             </br>
+        </div>
+        <div> 
+            <p>Si desea cambiar el estatus de algún curso, haga clic
+                <a href="/CursosLibres/presentation/administrador/cambiarEstatus"> aquí.</a>
+            </p>
         </div>
         </form>
         <%@ include file="/presentation/footer.jsp" %>

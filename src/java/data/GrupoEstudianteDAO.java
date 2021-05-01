@@ -11,6 +11,8 @@ package data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import logic.Curso;
@@ -20,6 +22,17 @@ import logic.GrupoEstudiante;
 import logic.Profesor;
 
 public class GrupoEstudianteDAO {
+    
+    public List<GrupoEstudiante> readAll() throws Exception{
+        List<GrupoEstudiante> grupos = new ArrayList<>();
+        String sql = "select* from gruposestudiantes";
+        PreparedStatement stm = Connection.instance().prepareStatement(sql);
+        ResultSet rs = Connection.instance().executeQuery(stm);
+        while(rs.next()){
+            grupos.add(from(rs));
+        }
+        return grupos;
+    }
     
     public GrupoEstudiante readGrupo(String idEst, int idGru) throws Exception{
         String sql = "select* from grupos where id_estudiante=%s and id_grupo=%s";
@@ -50,7 +63,7 @@ public class GrupoEstudianteDAO {
             Estudiante e = new Estudiante();
             try {
                 g = readGrupo(rs.getInt("id_grupo"));
-                e = readEstudiante(rs.getString("profesor"));
+                e = readEstudiante(rs.getString("id_estudiante"));
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }

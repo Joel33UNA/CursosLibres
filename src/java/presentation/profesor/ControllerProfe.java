@@ -20,7 +20,8 @@ import logic.Profesor;
 
 @WebServlet(name = "ControllerProfe", urlPatterns = {"/presentation/profesor/show",
                                                      "/presentation/profesor/visualizarprofes",
-                                                     "/presentation/profesor/buscar"})
+                                                     "/presentation/profesor/buscar",
+                                                     "/presentation/profesor/estudiantes"})
 public class ControllerProfe extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -31,6 +32,7 @@ public class ControllerProfe extends HttpServlet {
             case "/presentation/profesor/show": { viewURL = showAction(request); break; }
             case "/presentation/profesor/visualizarprofes": { viewURL = this.visualizar(request); break; }
             case "/presentation/profesor/buscar": { viewURL = this.buscar(request); break; } 
+            case "/presentation/profesor/estudiantes": { viewURL = this.showEstudiantes(request); break; }
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
@@ -69,6 +71,11 @@ public class ControllerProfe extends HttpServlet {
             ex.getMessage();
         }
         return "/presentation/administrador/verprofesores.jsp";
+    }
+    
+    private String showEstudiantes(HttpServletRequest request) {
+        return "/presentation/estudiante/showestudiantes?id=" +
+                request.getParameter("id");
     }
 
     @Override

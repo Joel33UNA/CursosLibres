@@ -31,7 +31,7 @@ public class Grupo {
         this.profesor = null;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

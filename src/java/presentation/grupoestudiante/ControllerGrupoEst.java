@@ -50,7 +50,7 @@ public class ControllerGrupoEst extends HttpServlet {
             Grupo grupo = logic.Service.instancia().buscarGrupo(idGru);
             grupoest.setGrupo(grupo);
             logic.Service.instancia().insertarGrupoEst(grupoest);
-            return "/presentation/estudiante/vergrupos.jsp";
+            return "/presentation/estudiante/historial";
         }
         catch(Exception ex){
             return "/presentation/Error.jsp";
