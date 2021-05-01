@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.Estudiante;
 
-@WebServlet(name = "ControllerEst", urlPatterns = {"/presentation/estudiante/show"})
+@WebServlet(name = "ControllerEst", urlPatterns = {"/presentation/estudiante/show",
+                                                   "/presentation/estudiante/showgru"})
 public class ControllerEst extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -28,13 +29,18 @@ public class ControllerEst extends HttpServlet {
         String viewURL; 
         switch(request.getServletPath()){
             case "/presentation/estudiante/show": { viewURL = this.showAction(request); break;}
+            case "/presentation/estudiante/showgru": { viewURL = this.showGru(request, est.getId()); break; }
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
     }
     
     private String showAction(HttpServletRequest request){
-        return "/presentation/estudiante/matricular.jsp";
+        return "/presentation/curso/matricularshow";
+    }
+    
+    private String showGru(HttpServletRequest request, String est){
+        return "/presentation/grupo/showest?id=" + request.getParameter("id");
     }
 
      @Override

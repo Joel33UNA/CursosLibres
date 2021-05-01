@@ -10,20 +10,23 @@ package logic;
 
 import data.CursoDAO;
 import data.GrupoDAO;
+import data.GrupoEstudianteDAO;
 import data.UsuarioDAO;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Service {
     private static Service instancia;
-    private UsuarioDAO usuarios;
-    private CursoDAO cursos;
-    private GrupoDAO grupos;
+    private final UsuarioDAO usuarios;
+    private final CursoDAO cursos;
+    private final GrupoDAO grupos;
+    private final GrupoEstudianteDAO grupoestudiante;
     
     private Service(){
         this.usuarios = new UsuarioDAO();
         this.cursos = new CursoDAO();
         this.grupos = new GrupoDAO();
+        this.grupoestudiante = new GrupoEstudianteDAO();
     }
     
     public static Service instancia(){
@@ -43,16 +46,30 @@ public class Service {
         return profesor;
     }   
     
+    public Estudiante buscarEstudiante(String id) throws Exception{
+        Estudiante estudiante = usuarios.readEstudiante(id);
+        return estudiante;
+    }
+    
+    public Grupo buscarGrupo(String id) throws Exception{
+        Grupo grupo = grupos.readGrupo(Integer.valueOf(id));
+        return grupo;
+    }
+    
     public void insertarUsuario(Usuario usuario) throws Exception{
-        usuarios.signin(usuario);
+        this.usuarios.signin(usuario);
     }
     
     public void insertarCurso(Curso curso) throws Exception{
-        cursos.add(curso);
+        this.cursos.add(curso);
     }
     
     public void insertarGrupo(Grupo grupo) throws Exception{
-        grupos.add(grupo);
+        this.grupos.add(grupo);
+    }
+    
+    public void insertarGrupoEst(GrupoEstudiante grupoest) throws Exception{
+        this.grupoestudiante.add(grupoest);
     }
     
     public List<Curso> cargarCursos() throws Exception{

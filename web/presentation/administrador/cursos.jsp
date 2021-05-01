@@ -38,12 +38,14 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                     <input class="<%=comprobarErrores("tematica", errores)%>" type="text"
                            name="tematica" value="<%=form.get("tematica")[0]%>">
                 </div>
-                <div class="telefono">
+                <div class="estatus">
                     <span>Estatus: </span>
-                    <input class="<%=comprobarErrores("estatus", errores)%>" type="text"
-                          name="estatus" value="<%=form.get("estatus")[0]%>">
+                    <select name="estatus">
+                        <option value="en oferta">En oferta</option>
+                        <option value="sin oferta">Sin oferta</option>
+                    </select>
                 </div>
-                <div class="telefono">
+                <div class="precio">
                     <span>Precio: </span>
                     <input class="<%=comprobarErrores("precio", errores)%>" type="text"
                           name="precio" value="<%=form.get("precio")[0]%>">
