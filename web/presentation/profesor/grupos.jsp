@@ -38,7 +38,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
             <tbody>
                 <% for(Grupo grupo : profe.getGrupos()){ %>
                     <tr>
-                        <td><a href="/CursosLibres/presentation/"><%=grupo.getCurso().getNombre()%></a></td>
+                        <td><a href="/CursosLibres/presentation/profesor/estudiantes?id=<%=grupo.getId()%>"><%=grupo.getCurso().getNombre()%></a></td>
                         <td><%=grupo.getHorario()%></td>
                     </tr>
                 <% } %>

@@ -39,11 +39,11 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
             <% } %>
         </div>
         <div>
-            <br> 
+            <h3> 
                 Escriba aquí el nombre o la temática del curso que quiere buscar: 
                 <input  type="text" name="buscar" value=" "></input>
                 <input type="submit" value="Buscar" class="boton"></input>
-            </br>
+            </h3>
             
         </div>
         </form>

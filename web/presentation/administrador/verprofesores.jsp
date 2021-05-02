@@ -15,7 +15,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <html>
     <head>
         <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css"/>
-        <link href="${pageContext.request.contextPath}/css/profesor.css" rel="stylesheet" type="text/css"/>
+        <link href="${pageContext.request.contextPath}/css/curso.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Listado de profesores</title>
     </head>
@@ -32,15 +32,18 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                 <table border>
                     <thead>
                         <tr >
-                            <th>ID</th> <th>Nombre</th>
+                            <th>ID</th> <th>Nombre</th> <th>Clave</th> <th>Correo</th> <th>Teléfono</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% for(Profesor p : model.getProfesores()){ %>
-                        <tr>
-                            <td> <%= p.getId() %> </td>
-                            <td><a href="/"> <%= p.getNombre() %> </a></td> 
-                        </tr>
+                            <tr>
+                                <td> <%= p.getId() %> </td>
+                                <td> <%= p.getNombre() %></td>
+                                <td> <%= p.getClave()%></td>
+                                <td> <%= p.getCorreo()%></td>
+                                <td> <%= p.getTelefono()%></td>
+                            </tr>
                         <% } %>
                     </tbody>
                 </table>

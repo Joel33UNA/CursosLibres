@@ -52,7 +52,6 @@ create table gruposestudiantes(
     id_estudiante varchar(45) not null,
     id_grupo int not null,
     nota int,
-    idmatricula int,
     primary key (id_estudiante, id_grupo),
     foreign key (id_estudiante) references estudiantes(id),
     foreign key (id_grupo) references grupos(id)

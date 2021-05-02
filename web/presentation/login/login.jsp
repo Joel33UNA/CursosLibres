@@ -43,7 +43,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                            value="<%=form.get("password")[0]%>" title="<%=title("password", errores)%>"></input>
                 </div>
                 <div class="signin">
-                    <p>¿No tenés cuenta aún? <a href="/CursosLibres/presentation/signin/show">registrarse aquí</a>.</p>
+                    <p>¿No tenés cuenta aún? <a href="/CursosLibres/presentation/signin/show">regístrate aquí</a>.</p>
                 </div>
                 <div>
                     <input type="submit" value="Iniciar Sesión" class="boton"></input>

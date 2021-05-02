@@ -27,7 +27,8 @@ import logic.Profesor;
                                                      "/presentation/grupo/showadm",
                                                      "/presentation/grupo/matricula",
                                                      "/presentation/grupo/buscar",
-                                                     "/presentation/grupo/agregar"})
+                                                     "/presentation/grupo/agregar",
+                                                     "/presentation/grupo/showest"})
 public class ControllerGrupo extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -41,6 +42,7 @@ public class ControllerGrupo extends HttpServlet {
             case "/presentation/grupo/matricula": { viewURL = this.matricular(request); break; }
             case "/presentation/grupo/buscar": { viewURL = this.buscar(request); break; }
             case "/presentation/grupo/agregar": { viewURL = this.agregar(request); break; }
+            case "/presentation/grupo/showest": { viewURL = this.showActionEst(request); break; }
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
@@ -75,9 +77,9 @@ public class ControllerGrupo extends HttpServlet {
     }
     
     private String showActionAdm(HttpServletRequest request){
+        ModelGrupo model = (ModelGrupo)request.getAttribute("model");
         String idCurso = request.getParameter("id");
         int idC = Integer.parseInt(idCurso); 
-        ModelGrupo model = (ModelGrupo)request.getAttribute("model");
         model.getGrupo().setCurso(new Curso(idC));
         List<Grupo> g = new ArrayList<>();
         try {
@@ -148,6 +150,23 @@ public class ControllerGrupo extends HttpServlet {
             errores.put("profesor", "El ID del profesor es inválido");
         }
         return errores;
+    }
+    
+    private String showActionEst(HttpServletRequest request) {
+        String idCurso = request.getParameter("id");
+        int idC = Integer.parseInt(idCurso); 
+        ModelGrupo model = (ModelGrupo)request.getAttribute("model");
+        model.getGrupo().setCurso(new Curso(idC));
+        List<Grupo> g = new ArrayList<>();
+        try {
+            g = logic.Service.instancia().buscarGrupos(idC);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        model.setGrupos(g);
+        request.setAttribute("model", model);
+        return "/presentation/estudiante/vergrupos.jsp";
+        // Aca queda el id del estudiante
     }
     
     @Override

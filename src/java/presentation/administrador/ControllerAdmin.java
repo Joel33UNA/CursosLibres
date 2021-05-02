@@ -56,7 +56,8 @@ public class ControllerAdmin extends HttpServlet {
     }
     
     private String showGru(HttpServletRequest request){
-        return "/presentation/grupo/showadm?id=" + request.getParameter("id");
+        return "/presentation/grupo/showadm?id=" + 
+                request.getParameter("id");
     }
     
     private String signin(HttpServletRequest request){

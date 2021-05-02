@@ -42,16 +42,16 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
             <% } %>
         </div>
         <div>
-            <br> 
+            <h3> 
                 Escriba aquí el nombre del curso que desea buscar: 
                 <input  type="text" name="buscar" value=" "></input>
                 <input type="submit" value="Buscar" class="boton"></input>
-            </br>
+            </h3>
         </div>
         <div> 
-            <p>Si desea cambiar el estatus de algún curso, haga clic
+            <h4>Si desea cambiar el estatus de algún curso, haga clic
                 <a href="/CursosLibres/presentation/administrador/cambiarEstatus"> aquí.</a>
-            </p>
+            </h4>
         </div>
         </form>
         <%@ include file="/presentation/footer.jsp" %>

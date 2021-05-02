@@ -75,12 +75,27 @@ input.invalido{
     border: 3px solid #FC6544;
 }
 
-div.sesion > div{
+.sesion > div{
     text-align: center;
     padding: 10px;
 }
 
-div.sesion > div.signin p{
+.sesion > div.signin p{
     text-align: center;
     font-size: 30px;
+}
+
+.sesion div.estatus select{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.sesion div.estatus select{
+    display: inline-block;
+    width: 85%;
+    cursor: pointer;
+    padding: 10px 10px;
+    border: 0;
+    border-radius: 0;
 }

@@ -26,7 +26,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     <body>
         <%@ include file="/presentation/header.jsp" %>
         <form class="formulario">
-            <h2>Información del usuario</h2>
+            <h2>Información del usuario actual</h2>
             <div class="sesion">
                 <div class="id">
                     <i>Identificación: <%=model.getUsuario().getId()%></i>

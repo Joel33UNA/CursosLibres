@@ -31,6 +31,7 @@ import javax.servlet.http.Part;
                                                      "/presentation/curso/buscar",
                                                      "/presentation/curso/agregar",
                                                      "/presentation/cursos/image",
+                                                     "/presentation/curso/matricularshow",
                                                      "/presentation/curso/cambiarEstatus",
                                                      "/presentation/curso/enviarCambioEstatus"})
 @MultipartConfig(location="C:/imagenesProyecto")
@@ -49,6 +50,7 @@ public class ControllerCurso extends HttpServlet {
             case "/presentation/cursos/image": { viewURL = this.image(request,response); break; }
             case "/presentation/curso/cambiarEstatus": { viewURL = this.cambiarEstatus(request); break; }
             case "/presentation/curso/enviarCambioEstatus": { viewURL = this.enviarCambioEstatus(request); break;}
+            case "/presentation/curso/matricularshow": { viewURL = this.matriculaView(request); break; }
             default: { viewURL = ""; break; }
         }
         request.getRequestDispatcher(viewURL).forward(request, response);
@@ -125,7 +127,7 @@ public class ControllerCurso extends HttpServlet {
                 imagen.write(model.getCurso().getNombre());
                 return "/presentation/curso/visualizarcursoadmin";
             } catch (Exception ex) {
-                return "/presentation/Error.jsp";
+                return "/presentation/error.jsp";
             }
         }
         catch(Exception e){
@@ -167,10 +169,20 @@ public class ControllerCurso extends HttpServlet {
             Files.copy(path, out);
             out.flush();
         } catch (IOException e) {
-            return "presentation/error.jsp";
+            return "/presentation/error.jsp";
         }
         return null;
-    }    
+    }
+
+    private String matriculaView(HttpServletRequest request) {
+        ModelCurso model = (ModelCurso)request.getAttribute("model");
+        try {
+            model.setCursos(logic.Service.instancia().cargarCursos());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return "/presentation/estudiante/vercursos.jsp";
+    }
     
     private String cambiarEstatus(HttpServletRequest request) {
         ModelCurso model = (ModelCurso)request.getAttribute("model");

@@ -25,7 +25,6 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                 <% if (usuario.getRol().equals("estudiante")){%>
                     <li><a href="/CursosLibres/presentation/estudiante/show">Matricular</a></li>
                     <li><a href="/CursosLibres/presentation/grupoestudiante/historial">Historial</a></li>
-                    <li><a href="/">Constancia</a></li>
                     <li><a href="/CursosLibres/presentation/login/logout">Cerrar sesión</a></li>
                 <% } %>
                 <% if (usuario.getRol().equals("profesor")){%>

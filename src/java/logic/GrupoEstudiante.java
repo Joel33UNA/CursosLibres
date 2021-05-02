@@ -60,7 +60,7 @@ public class GrupoEstudiante {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
         return hash;
     }
 
@@ -87,4 +87,6 @@ public class GrupoEstudiante {
         }
         return true;
     }
+
+    
 }

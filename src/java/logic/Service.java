@@ -10,20 +10,23 @@ package logic;
 
 import data.CursoDAO;
 import data.GrupoDAO;
+import data.GrupoEstudianteDAO;
 import data.UsuarioDAO;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Service {
     private static Service instancia;
-    private UsuarioDAO usuarios;
-    private CursoDAO cursos;
-    private GrupoDAO grupos;
+    private final UsuarioDAO usuarios;
+    private final CursoDAO cursos;
+    private final GrupoDAO grupos;
+    private final GrupoEstudianteDAO grupoestudiante;
     
     private Service(){
         this.usuarios = new UsuarioDAO();
         this.cursos = new CursoDAO();
         this.grupos = new GrupoDAO();
+        this.grupoestudiante = new GrupoEstudianteDAO();
     }
     
     public static Service instancia(){
@@ -43,16 +46,30 @@ public class Service {
         return profesor;
     }   
     
+    public Estudiante buscarEstudiante(String id) throws Exception{
+        Estudiante estudiante = usuarios.readEstudiante(id);
+        return estudiante;
+    }
+    
+    public Grupo buscarGrupo(String id) throws Exception{
+        Grupo grupo = grupos.readGrupo(Integer.valueOf(id));
+        return grupo;
+    }
+    
     public void insertarUsuario(Usuario usuario) throws Exception{
-        usuarios.signin(usuario);
+        this.usuarios.signin(usuario);
     }
     
     public void insertarCurso(Curso curso) throws Exception{
-        cursos.add(curso);
+        this.cursos.add(curso);
     }
     
     public void insertarGrupo(Grupo grupo) throws Exception{
-        grupos.add(grupo);
+        this.grupos.add(grupo);
+    }
+    
+    public void insertarGrupoEst(GrupoEstudiante grupoest) throws Exception{
+        this.grupoestudiante.add(grupoest);
     }
     
     public List<Curso> cargarCursos() throws Exception{
@@ -118,6 +135,11 @@ public class Service {
         }
         return nuevo;
     }
+    
+    public List<Estudiante> buscarEstudiantes(int idGrupo) throws Exception {
+        List<Estudiante> estudiantes = this.grupos.readGruposEstudiantes(idGrupo);
+        return estudiantes;
+    }
 
     public void updateEstatus(int idC) throws Exception {
         Curso c = cursos.readCurso(idC);
@@ -127,5 +149,34 @@ public class Service {
             c.setEstatus("en oferta");
         }
         cursos.updateEst(c);
+    }
+
+    public List<Curso> buscarCursoEst(String idE) throws Exception {
+        List<GrupoEstudiante> gEst = grupoestudiante.readAll();
+        List<Curso> nuevo = new ArrayList<>();
+        for(GrupoEstudiante g: gEst){
+            if(g.getEstudiante().getId().equals(idE)){
+                nuevo.add(g.getGrupo().getCurso());
+            }
+        }
+        return nuevo;
+    }
+
+    public boolean validarMatricula(GrupoEstudiante grupoest) throws Exception {
+        List<GrupoEstudiante> gEst = grupoestudiante.readAll();
+        for(GrupoEstudiante g: gEst){
+            if(g.getEstudiante().getId().equals(grupoest.getEstudiante().getId())){
+                if(g.getGrupo().getCurso().getNombre().equals(grupoest.getGrupo().getCurso().getNombre())){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void setearNota(String idE, int g, int n)throws Exception {
+        GrupoEstudiante gE = grupoestudiante.readGrupo(idE, g);
+        gE.setNota(n);
+        grupoestudiante.updateNota(gE);
     }
 }

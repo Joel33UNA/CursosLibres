@@ -61,6 +61,7 @@
     <servlet-name>ControllerProfe</servlet-name>
     <url-pattern>/presentation/profesor/show</url-pattern>
     <url-pattern>/presentation/profesor/visualizarprofes</url-pattern>
+    <url-pattern>/presentation/profesor/agregarnota</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ControllerSignin</servlet-name>
@@ -96,6 +97,9 @@
   <servlet-mapping>
     <servlet-name>ControllerGrupoEst</servlet-name>
     <url-pattern>/presentation/grupoEstudiante/historial</url-pattern>
+    <url-pattern>/presentation/grupoestudiante/matricula</url-pattern>
+    <url-pattern>/presentation/grupoestudiante/print</url-pattern>
+    <url-pattern>/presentation/grupoestudiante/agregarnotas</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>
