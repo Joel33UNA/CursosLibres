@@ -24,14 +24,14 @@ public class GrupoEstudiante {
     
     public GrupoEstudiante() {
         this.nota = 0;
-        this.estudiante = null;
-        this.grupo = null;
+        this.estudiante = new Estudiante();
+        this.grupo = new Grupo();
     }
 
     public GrupoEstudiante(Estudiante est) {
         this.nota = 0;
         this.estudiante = est;
-        this.grupo = null;
+        this.grupo = new Grupo();
     }
 
     public int getNota() {

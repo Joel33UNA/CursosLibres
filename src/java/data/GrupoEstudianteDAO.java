@@ -33,7 +33,7 @@ public class GrupoEstudianteDAO {
     }
     
     public GrupoEstudiante readGrupo(String idEst, int idGru) throws Exception{
-        String sql = "select* from grupos where id_estudiante=%s and id_grupo=%s";
+        String sql = "select* from gruposestudiantes where id_estudiante=%s and id_grupo=%s";
         sql = String.format(sql, idEst, idGru);
         PreparedStatement stm = Connection.instance().prepareStatement(sql);
         ResultSet rs = Connection.instance().executeQuery(stm);

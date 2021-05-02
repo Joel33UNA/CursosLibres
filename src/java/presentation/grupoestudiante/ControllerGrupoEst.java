@@ -170,9 +170,11 @@ public class ControllerGrupoEst extends HttpServlet {
     
     
     private String agregarNotas(HttpServletRequest request) {
+        String id = request.getParameter("id");
+        String gru = request.getParameter("grupo");
         ModelGrupoEst model = (ModelGrupoEst)request.getAttribute("model");
-        model.getGrupoEstudiante().getEstudiante().setId(request.getParameter("id"));
-        model.getGrupoEstudiante().getGrupo().setId(Integer.valueOf(request.getParameter("curso")));
+        model.getGrupoEstudiante().getEstudiante().setId(id);
+        model.getGrupoEstudiante().getGrupo().setId(Integer.valueOf(gru));
         return "/presentation/profesor/agregarNotas.jsp";
     }
     
