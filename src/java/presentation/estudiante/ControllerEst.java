@@ -45,7 +45,13 @@ public class ControllerEst extends HttpServlet {
     }
     
     private String showAction(HttpServletRequest request){
-        return "/presentation/curso/matricularshow";
+        String idGru = request.getParameter("gru");
+        if (idGru == null){
+            return "/presentation/curso/matricularshow";
+        }
+        else{
+            return "/presentation/grupoestudiante/matricula?gru=" + idGru;
+        }
     }
     
     private String showGru(HttpServletRequest request, String est){

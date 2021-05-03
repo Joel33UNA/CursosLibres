@@ -40,6 +40,9 @@ public class ControllerLogin extends HttpServlet {
     
     private String showAction(HttpServletRequest request){
         ModelLogin model = (ModelLogin)request.getAttribute("model");
+        Map<String, String> gru = new HashMap<String, String>();
+        gru.put("gru", request.getParameter("gru"));
+        request.setAttribute("gru", gru);
         model.getUsuario().setId("");
         model.getUsuario().setClave("");
         return "/presentation/login/login.jsp";
@@ -73,13 +76,17 @@ public class ControllerLogin extends HttpServlet {
     private String loginBD(HttpServletRequest request){
         ModelLogin model = (ModelLogin)request.getAttribute("model");
         HttpSession sesion = request.getSession(true);
+        String gru = request.getParameter("gru");
+        String estURL = "";
+        if (gru == null) estURL = "/presentation/estudiante/show";
+            else estURL = "/presentation/estudiante/show?id=" + gru;
         try{
             Usuario usuario = this.validarCredenciales(model.getUsuario());
             sesion.setAttribute("usuario", usuario);
             switch(usuario.getRol()){
-                case "administrador": return "/presentation/administrador/show";
-                case "profesor": return "/presentation/profesor/show";
-                case "estudiante": return "/presentation/estudiante/show";
+                case "administrador": { return "/presentation/administrador/show"; }
+                case "profesor": { return estURL; }
+                case "estudiante": { return "/presentation/estudiante/show"; }
                 default: return "";
             }
         }
