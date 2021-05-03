@@ -13,6 +13,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <% Map<String, String> errores = (Map<String, String>)request.getAttribute("errores"); %>
 <% ModelLogin model = (ModelLogin)request.getAttribute("model"); %>
 <% Map<String,String[]> form = (errores==null)?this.getForm(model):request.getParameterMap();%>
+<% Map<String, String> gru = (Map<String, String>)request.getAttribute("gru"); %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -27,7 +28,14 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     </head>
     <body>
         <%@ include file="/presentation/header.jsp" %>
-        <form class="formulario" action="/CursosLibres/presentation/login/login" method="post">
+        <form class="formulario"
+              <% if(gru == null){ %>
+                action="/CursosLibres/presentation/login/login"
+              <% } %>
+              <% if(gru != null){ %>
+                action="/CursosLibres/presentation/login/login?gru=<%=gru.get("gru")%>"
+              <%}%>
+              method="post">
             <h2>Iniciar sesión</h2>
             <div class="sesion">
                 <div class="id">
