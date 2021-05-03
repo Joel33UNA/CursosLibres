@@ -78,15 +78,19 @@ public class ControllerLogin extends HttpServlet {
         HttpSession sesion = request.getSession(true);
         String gru = request.getParameter("gru");
         String estURL = "";
-        if (gru == null) estURL = "/presentation/estudiante/show";
-            else estURL = "/presentation/estudiante/show?id=" + gru;
+        if (gru.equals("null")) {
+            estURL = "/presentation/estudiante/show";
+        }
+            else {
+            estURL = "/presentation/estudiante/show?id=" + gru;
+        }
         try{
             Usuario usuario = this.validarCredenciales(model.getUsuario());
             sesion.setAttribute("usuario", usuario);
             switch(usuario.getRol()){
                 case "administrador": { return "/presentation/administrador/show"; }
-                case "profesor": { return estURL; }
-                case "estudiante": { return "/presentation/estudiante/show"; }
+                case "profesor": { return "/presentation/profesor/show"; }
+                case "estudiante": { return estURL; }
                 default: return "";
             }
         }

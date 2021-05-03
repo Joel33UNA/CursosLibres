@@ -47,7 +47,7 @@ import logic.Usuario;
                                                         "/presentation/grupoestudiante/print",
                                                         "/presentation/grupoestudiante/agregarnotas",
                                                         "/presentation/grupoestudiante/setearNota"})
-@MultipartConfig(location="/")
+@MultipartConfig(location="C:/imagenesProyecto")
 public class ControllerGrupoEst extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -123,7 +123,7 @@ public class ControllerGrupoEst extends HttpServlet {
             Document document = new Document(pdf, PageSize.A4.rotate());
             PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA); 
             document.setMargins(20, 20, 20, 20);
-            ImageData data = ImageDataFactory.create("C:\\Users\\diego\\OneDrive\\Desktop\\UNA\\5- I_ciclo_2021\\Programación 4\\CursosLibres\\web\\logo.jpg"); 
+            ImageData data = ImageDataFactory.create("C:/imagenesProyecto/logo.jpg"); 
             Image img = new Image(data); 
             document.add(img);
             document.add(new Paragraph("cursoslibres.com"));
@@ -156,7 +156,7 @@ public class ControllerGrupoEst extends HttpServlet {
                 table.addHeaderCell(String.valueOf(curso.getNombre()));
                 table.addHeaderCell(String.valueOf(df.format(curso.getPrecio())));
             }
-            
+
             document.add(table);
             document.close();
             response.setContentType("application/pdf");

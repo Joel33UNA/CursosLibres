@@ -122,8 +122,8 @@ public class ControllerCurso extends HttpServlet {
             try {
                 imagen = request.getPart("imagen");
                 logic.Service.instancia().insertarCurso(curso);            
-                request.setAttribute("cursos", logic.Service.instancia().cargarCursos());
-                model = (ModelCurso)request.getAttribute("model");
+                //request.setAttribute("cursos", logic.Service.instancia().cargarCursos());
+                //model = (ModelCurso)request.getAttribute("model");
                 imagen.write(model.getCurso().getNombre());
                 return "/presentation/curso/visualizarcursoadmin";
             } catch (Exception ex) {
