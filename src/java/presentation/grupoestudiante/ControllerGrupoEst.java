@@ -123,9 +123,9 @@ public class ControllerGrupoEst extends HttpServlet {
             Document document = new Document(pdf, PageSize.A4.rotate());
             PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA); 
             document.setMargins(20, 20, 20, 20);
-//            ImageData data = ImageDataFactory.create("../images/logo.jpg"); 
-//            Image img = new Image(data); 
-//            document.add(img);
+            ImageData data = ImageDataFactory.create("C:\\Users\\diego\\OneDrive\\Desktop\\UNA\\5- I_ciclo_2021\\Programación 4\\CursosLibres\\web\\logo.jpg"); 
+            Image img = new Image(data); 
+            document.add(img);
             document.add(new Paragraph("cursoslibres.com"));
             document.add(new Paragraph(""));
             document.add(new Paragraph("Datos del estudiante:"));
