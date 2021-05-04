@@ -8,6 +8,9 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 
 package logic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Estudiante extends Usuario {
     

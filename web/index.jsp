@@ -24,16 +24,18 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <%@ include file="/presentation/header.jsp" %>
         <h1>¡Aquí los cursos disponibles!</h1>
         <h2>Dele clic al nombre del curso para ver los grupos que corresponden a ese curso.</h2>
-        <form class="formulario" enctype="multipart/form-data">
+        <form class="formulario" enctype="multipart/form-data" action="/CursosLibres/presentation/curso/buscar">
             <div class="grid-container">
             <% for(Curso c : model.getCursos()){ %>
                 <%if(c.getEstatus().equals("en oferta")){%>
                     <div class="image-container">
                         <p> <%= c.getNombre()%> </p>
                         <p>Precio: <%= c.getPrecio()%> </p>
-                        <a href="/CursosLibres/presentation/grupo/show?id=<%=c.getId()%>">
-                            <img src="CursosLibres/presentation/curso/image?nombre=<%=c.getNombre()%>">
-                        </a>
+                        <div class="image">
+                            <a href="/CursosLibres/presentation/grupo/show?id=<%=c.getId()%>">
+                                <img src="/CursosLibres/presentation/curso/image?nombre=<%=c.getNombre()%>">
+                            </a>
+                        </div>
                     </div>
                 <%}%>
             <% } %>
@@ -41,7 +43,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <div>
             <h3> 
                 Escriba aquí el nombre o la temática del curso que quiere buscar: 
-                <input  type="text" name="buscar" value=" "></input>
+                <input  type="text" name="buscar" value=""></input>
                 <input type="submit" value="Buscar" class="boton"></input>
             </h3>
             

@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.Estudiante;
+import logic.GrupoEstudiante;
 import logic.Usuario;
 
 @WebServlet(name = "ControllerEst", urlPatterns = {"/presentation/estudiante/show",
@@ -46,7 +47,7 @@ public class ControllerEst extends HttpServlet {
     
     private String showAction(HttpServletRequest request){
         String idGru = request.getParameter("gru");
-        if (idGru.equals("null")){
+        if (idGru == null || idGru.equals("null")){
             return "/presentation/curso/matricularshow";
         }
         else{
@@ -68,12 +69,15 @@ public class ControllerEst extends HttpServlet {
         String idGrupo = request.getParameter("id");
         int idG = Integer.parseInt(idGrupo);
         List<Estudiante> est = new ArrayList<>();
+        List<GrupoEstudiante> grupoest = new ArrayList<>();
         try{
             est = logic.Service.instancia().buscarEstudiantes(idG);
+            grupoest = logic.Service.instancia().buscarGrupoEst(idG);
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
         model.setEstudiantes(est);
+        model.setGruposEstudiantes(grupoest);
         request.setAttribute("model", model);
         grupo.put("grupo", idGrupo);
         request.setAttribute("grupo", grupo);

@@ -30,7 +30,7 @@ import javax.servlet.http.Part;
                                                      "/presentation/curso/showcursoadd",
                                                      "/presentation/curso/buscar",
                                                      "/presentation/curso/agregar",
-                                                     "/presentation/cursos/image",
+                                                     "/presentation/curso/image",
                                                      "/presentation/curso/matricularshow",
                                                      "/presentation/curso/cambiarEstatus",
                                                      "/presentation/curso/enviarCambioEstatus"})
@@ -47,7 +47,7 @@ public class ControllerCurso extends HttpServlet {
             case "/presentation/curso/showcursoadd": { viewURL = this.showCurAdd(request); break; }
             case "/presentation/curso/buscar": { viewURL = this.buscar(request); break; }
             case "/presentation/curso/agregar": { viewURL = this.agregar(request); break; }
-            case "/presentation/cursos/image": { viewURL = this.image(request,response); break; }
+            case "/presentation/curso/image": { viewURL = this.image(request,response); break; }
             case "/presentation/curso/cambiarEstatus": { viewURL = this.cambiarEstatus(request); break; }
             case "/presentation/curso/enviarCambioEstatus": { viewURL = this.enviarCambioEstatus(request); break;}
             case "/presentation/curso/matricularshow": { viewURL = this.matriculaView(request); break; }
