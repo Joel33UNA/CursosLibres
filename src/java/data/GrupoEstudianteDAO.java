@@ -45,6 +45,31 @@ public class GrupoEstudianteDAO {
         }
     }
     
+    public List<GrupoEstudiante> readGruposEstu(String idEstudiante)throws Exception {
+        List<GrupoEstudiante> gruposestudiantes = new ArrayList<>();
+        String sql = "select* from gruposestudiantes where id_estudiante=%s";
+        sql = String.format(sql, idEstudiante);
+        PreparedStatement stm = Connection.instance().prepareStatement(sql);
+        ResultSet rs = Connection.instance().executeQuery(stm);
+        while(rs.next()){
+            gruposestudiantes.add(fromGruposEstudiantes(rs));
+        }
+        return gruposestudiantes;    
+    }
+    
+    private GrupoEstudiante fromGruposEstudiantes(ResultSet rs) throws Exception{
+        try{
+            GrupoEstudiante ge = new GrupoEstudiante();
+            ge.setEstudiante(readEstudiante(rs.getString("id_estudiante")));
+            ge.setGrupo(readGrupo(rs.getInt("id_grupo")));
+            ge.setNota(rs.getInt("nota"));
+            return ge;
+        }
+        catch(SQLException ex){
+            return null;
+        }
+    }
+    
     public void add(GrupoEstudiante g) throws Exception{
         String sql = "insert into gruposestudiantes "
                 + "values ('%s', %s, %s)";

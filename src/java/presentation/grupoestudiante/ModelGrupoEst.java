@@ -16,15 +16,26 @@ import logic.GrupoEstudiante;
 public class ModelGrupoEst {
     private GrupoEstudiante grupoEstudiante;
     private List<Curso> cursos;
+    private List<GrupoEstudiante> grEsts;
     
     public ModelGrupoEst(){
         this.grupoEstudiante = new GrupoEstudiante();
         this.cursos = new ArrayList<>();
+        this.grEsts = new ArrayList<>();
     }
     
     public ModelGrupoEst(GrupoEstudiante gEst){
         this.grupoEstudiante = gEst;
         this.cursos = new ArrayList<>();
+        this.grEsts = new ArrayList<>();
+    }
+
+    public List<GrupoEstudiante> getGrEsts() {
+        return grEsts;
+    }
+
+    public void setGrEsts(List<GrupoEstudiante> grEsts) {
+        this.grEsts = grEsts;
     }
 
     public List<Curso> getCursos() {

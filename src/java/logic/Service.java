@@ -145,6 +145,11 @@ public class Service {
         List<GrupoEstudiante> gruposestudiantes = this.grupos.readGruposEstudiantes(idGrupo);
         return gruposestudiantes;
     }
+    
+    public List<GrupoEstudiante> buscarGrupoEst(String idEstudiante)throws Exception {
+        List<GrupoEstudiante> gruposestudiantes = this.grupoestudiante.readGruposEstu(idEstudiante);
+        return gruposestudiantes;    
+    }
 
     public void updateEstatus(int idC) throws Exception {
         Curso c = cursos.readCurso(idC);

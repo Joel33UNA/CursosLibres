@@ -43,7 +43,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                 </tbody>
             </table>
             <h2>Si desea generar una constancia de los cursos matriculados, haga clic
-                <a href="/CursosLibres/presentation/grupoestudiante/print?idEst=<%= model.getGrupoEstudiante().getEstudiante().getId() %>"> aquí.</a>
+                <a href="/CursosLibres/presentation/grupoestudiante/constancia?idEst=<%= model.getGrupoEstudiante().getEstudiante().getId() %>"> aquí.</a>
             </h2>
         </form>
         <%@ include file="/presentation/footer.jsp" %>

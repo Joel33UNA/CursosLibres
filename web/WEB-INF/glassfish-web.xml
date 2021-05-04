@@ -98,7 +98,7 @@
     <servlet-name>ControllerGrupoEst</servlet-name>
     <url-pattern>/presentation/grupoEstudiante/historial</url-pattern>
     <url-pattern>/presentation/grupoestudiante/matricula</url-pattern>
-    <url-pattern>/presentation/grupoestudiante/print</url-pattern>
+    <url-pattern>/presentation/grupoestudiante/constancia</url-pattern>
     <url-pattern>/presentation/grupoestudiante/agregarnotas</url-pattern>
     <url-pattern>/presentation/grupoestudiante/setearNota</url-pattern>
   </servlet-mapping>

@@ -26,8 +26,6 @@ import com.itextpdf.layout.element.Table;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -44,7 +42,7 @@ import logic.Usuario;
 
 @WebServlet(name = "ControllerGrupoEst", urlPatterns = {"/presentation/grupoestudiante/historial",
                                                         "/presentation/grupoestudiante/matricula",
-                                                        "/presentation/grupoestudiante/print",
+                                                        "/presentation/grupoestudiante/constancia",
                                                         "/presentation/grupoestudiante/agregarnotas",
                                                         "/presentation/grupoestudiante/setearNota"})
 @MultipartConfig(location="C:/imagenesProyecto")
@@ -57,7 +55,7 @@ public class ControllerGrupoEst extends HttpServlet {
         switch(request.getServletPath()){
             case "/presentation/grupoestudiante/historial": { viewURL = this.historial(request); break;}
             case "/presentation/grupoestudiante/matricula": { viewURL = this.matricula(request); break; }
-            case "/presentation/grupoestudiante/print": {viewURL = this.generarConstancia(request, response); break;}
+            case "/presentation/grupoestudiante/constancia": {viewURL = this.generarConstancia(request, response); break;}
             case "/presentation/grupoestudiante/agregarnotas": {viewURL = this.agregarNotas(request); break; }
             case "/presentation/grupoestudiante/setearNota": {viewURL = this.setearNota(request); break; }
             default: { viewURL = ""; break; }
@@ -113,12 +111,9 @@ public class ControllerGrupoEst extends HttpServlet {
     private String generarConstancia(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ModelGrupoEst model = (ModelGrupoEst)request.getAttribute("model");
         String idEstudiante = request.getParameter("idEst");
-        //String idGrupo = request.getParameter("idGru");
-        //int idG = Integer.valueOf(idGrupo);
         try {
             model.getGrupoEstudiante().setEstudiante(logic.Service.instancia().buscarEstudiante(idEstudiante));
-            model.setCursos(logic.Service.instancia().buscarCursoEst(idEstudiante));
-            //String nomDoc = idEstudiante+".pdf";
+            model.setGrEsts(logic.Service.instancia().buscarGrupoEst(idEstudiante));
             PdfDocument pdf = new PdfDocument(new PdfWriter(response.getOutputStream()));
             Document document = new Document(pdf, PageSize.A4.rotate());
             PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA); 
@@ -136,7 +131,7 @@ public class ControllerGrupoEst extends HttpServlet {
             
             document.add(new Paragraph(""));
             document.add(new Paragraph("Cursos llevados por el estudiante:"));
-            Table table = new Table(4);
+            Table table = new Table(6);
             Cell c; 
             Color bkg = ColorConstants.BLUE;
             Color frg= ColorConstants.WHITE;
@@ -146,15 +141,25 @@ public class ControllerGrupoEst extends HttpServlet {
             table.addHeaderCell(c);     
             c= new Cell(); c.add(new Paragraph("Nombre")).setBackgroundColor(bkg).setFontColor(frg);
             table.addHeaderCell(c); 
+            c= new Cell(); c.add(new Paragraph("Nota")).setBackgroundColor(bkg).setFontColor(frg);
+            table.addHeaderCell(c); 
+            c= new Cell(); c.add(new Paragraph("Condición")).setBackgroundColor(bkg).setFontColor(frg);
+            table.addHeaderCell(c); 
             c= new Cell(); c.add(new Paragraph("Precio")).setBackgroundColor(bkg).setFontColor(frg);
             table.addHeaderCell(c);                    
 
             DecimalFormat df = new DecimalFormat("####");
-            for(Curso curso:model.getCursos()){
-                table.addHeaderCell(String.valueOf(curso.getId()));
-                table.addHeaderCell(String.valueOf(curso.getTematica()));
-                table.addHeaderCell(String.valueOf(curso.getNombre()));
-                table.addHeaderCell(String.valueOf(df.format(curso.getPrecio())));
+            for(GrupoEstudiante gE:model.getGrEsts()){
+                table.addHeaderCell(String.valueOf(gE.getGrupo().getCurso().getId()));
+                table.addHeaderCell(String.valueOf(gE.getGrupo().getCurso().getTematica()));
+                table.addHeaderCell(String.valueOf(gE.getGrupo().getCurso().getNombre()));
+                table.addHeaderCell(String.valueOf(gE.getNota()));
+                if(gE.getNota() >= 70){
+                    table.addHeaderCell(String.valueOf("Aprobado"));
+                }else{
+                    table.addHeaderCell(String.valueOf("Reprobado"));
+                }
+                table.addHeaderCell(String.valueOf(df.format(gE.getGrupo().getCurso().getPrecio())));
             }
 
             document.add(table);

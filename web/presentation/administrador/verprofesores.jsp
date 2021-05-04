@@ -51,7 +51,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
             <div>
                 <br> 
                     Escriba aquí el nombre del profesor que desea buscar: 
-                    <input  type="text" name="buscar" value=" "></input>
+                    <input  type="text" name="buscar" value=""></input>
                     <input type="submit" value="Buscar" class="boton"></input>
                 </br>
             </div>
