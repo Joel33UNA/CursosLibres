@@ -28,16 +28,17 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <table border>
             <thead>
                 <tr >
-                    <th>ID</th> <th>Nombre</th> <th>Correo</th> <th>Teléfono</th> 
+                    <th>ID</th> <th>Nombre</th> <th>Nota</th> <th>Correo</th> <th>Teléfono</th>
                 </tr>
             </thead>
             <tbody>
-                <% for(Estudiante estudiante : model.getEstudiantes()){ %>
+                <% for(int i = 0; i < model.getEstudiantes().size(); i++){ %>
                     <tr>
-                        <td><%=estudiante.getId()%></td> 
-                        <td><a href="/CursosLibres/presentation/profesor/agregarnota?id=<%=estudiante.getId()%>&grupo=<%=grupo.get("grupo")%>"><%=estudiante.getNombre()%></a></td>
-                        <td><%=estudiante.getCorreo()%></td>
-                        <td><%=estudiante.getTelefono()%></td>
+                        <td><%=model.getEstudiantes().get(i).getId()%></td> 
+                        <td><a href="/CursosLibres/presentation/profesor/agregarnota?id=<%=model.getEstudiantes().get(i).getId()%>&grupo=<%=grupo.get("grupo")%>"><%=model.getEstudiantes().get(i).getNombre()%></a></td>
+                        <td><%=model.getGruposEstudiantes().get(i).getNota()%></td>
+                        <td><%=model.getEstudiantes().get(i).getCorreo()%></td>
+                        <td><%=model.getEstudiantes().get(i).getTelefono()%></td>
                     </tr>
                 <% } %>
             </tbody>

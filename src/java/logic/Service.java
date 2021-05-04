@@ -137,8 +137,13 @@ public class Service {
     }
     
     public List<Estudiante> buscarEstudiantes(int idGrupo) throws Exception {
-        List<Estudiante> estudiantes = this.grupos.readGruposEstudiantes(idGrupo);
+        List<Estudiante> estudiantes = this.grupos.readEstudiantes(idGrupo);
         return estudiantes;
+    }
+    
+    public List<GrupoEstudiante> buscarGrupoEst(int idGrupo) throws Exception{
+        List<GrupoEstudiante> gruposestudiantes = this.grupos.readGruposEstudiantes(idGrupo);
+        return gruposestudiantes;
     }
 
     public void updateEstatus(int idC) throws Exception {

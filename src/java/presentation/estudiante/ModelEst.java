@@ -11,14 +11,17 @@ package presentation.estudiante;
 import java.util.ArrayList;
 import java.util.List;
 import logic.Estudiante;
+import logic.GrupoEstudiante;
 
 public class ModelEst {
     private Estudiante estudiante;
     private List<Estudiante> estudiantes;
+    private List<GrupoEstudiante> gruposestudiantes;
     
     public ModelEst(){
         this.estudiante = new Estudiante();
         this.estudiantes = new ArrayList<>();
+        this.gruposestudiantes = new ArrayList<>();
     }
     
     public Estudiante getEstudiante() {
@@ -35,5 +38,13 @@ public class ModelEst {
     
     public void setEstudiantes(List<Estudiante> estudiantes){
         this.estudiantes = estudiantes;
+    }
+
+    public List<GrupoEstudiante> getGruposEstudiantes() {
+        return gruposestudiantes;
+    }
+
+    public void setGruposEstudiantes(List<GrupoEstudiante> gruposestudiantes) {
+        this.gruposestudiantes = gruposestudiantes;
     }
 }

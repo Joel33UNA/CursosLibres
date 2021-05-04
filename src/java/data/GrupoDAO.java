@@ -16,6 +16,7 @@ import java.util.List;
 import logic.Curso;
 import logic.Estudiante;
 import logic.Grupo;
+import logic.GrupoEstudiante;
 import logic.Profesor;
 
 public class GrupoDAO {
@@ -33,7 +34,7 @@ public class GrupoDAO {
         }
     }
     
-    public List<Estudiante> readGruposEstudiantes(int id) throws Exception{
+    public List<Estudiante> readEstudiantes(int id) throws Exception{
         List<Estudiante> estudiantes = new ArrayList<>();
         String sql = "select* from gruposestudiantes ge inner join usuarios u "
                 + "on ge.id_estudiante=u.id and id_grupo=%s";
@@ -44,6 +45,18 @@ public class GrupoDAO {
             estudiantes.add(fromEstudiante(rs));
         }
         return estudiantes;
+    }
+    
+    public List<GrupoEstudiante> readGruposEstudiantes(int idGrupo) throws Exception {
+        List<GrupoEstudiante> gruposestudiantes = new ArrayList<>();
+        String sql = "select* from gruposestudiantes where id_grupo=%s";
+        sql = String.format(sql, idGrupo);
+        PreparedStatement stm = Connection.instance().prepareStatement(sql);
+        ResultSet rs = Connection.instance().executeQuery(stm);
+        while(rs.next()){
+            gruposestudiantes.add(fromGruposEstudiantes(rs));
+        }
+        return gruposestudiantes;
     }
     
     public List<Grupo> readAll() throws Exception{
@@ -128,6 +141,20 @@ public class GrupoDAO {
         }
     }
     
+    public Estudiante readEstudiante(String id) throws Exception{
+        String sql = "select* from estudiantes, usuarios where "
+                + "estudiantes.id = usuarios.id and estudiantes.id=%s";
+        sql = String.format(sql,id);
+        PreparedStatement stm = Connection.instance().prepareStatement(sql);
+        ResultSet rs = Connection.instance().executeQuery(stm);
+        if(rs.next()){
+            return fromEstudiante(rs);
+        }
+        else{
+            throw new Exception("Estudiante no existe.");
+        }
+    }
+    
     public Profesor fromProfesor(ResultSet rs){
         try{
             Profesor r = new Profesor();
@@ -159,5 +186,17 @@ public class GrupoDAO {
             return null;
         }
     }
-    
+
+    private GrupoEstudiante fromGruposEstudiantes(ResultSet rs) throws Exception{
+        try{
+            GrupoEstudiante ge = new GrupoEstudiante();
+            ge.setEstudiante(readEstudiante(rs.getString("id_estudiante")));
+            ge.setGrupo(readGrupo(rs.getInt("id_grupo")));
+            ge.setNota(rs.getInt("nota"));
+            return ge;
+        }
+        catch(SQLException ex){
+            return null;
+        }
+    }
 }

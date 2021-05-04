@@ -78,7 +78,7 @@ public class ControllerLogin extends HttpServlet {
         HttpSession sesion = request.getSession(true);
         String gru = request.getParameter("gru");
         String estURL = "";
-        if (gru.equals("null")) {
+        if (gru == null || gru.equals("null")) {
             estURL = "/presentation/estudiante/show";
         }
             else {

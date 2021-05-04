@@ -34,9 +34,11 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                     <div class="image-container">
                         <p> <%= c.getNombre()%> </p>
                         <p>Precio: <%= c.getPrecio()%> </p>
-                        <a href="/CursosLibres/presentation/administrador/showgru?id=<%=c.getId()%>">
-                            <img src='CursosLibres/presentation/curso/image?nombre=<%=c.getNombre()%>'> 
-                        </a>
+                        <div class="image">
+                            <a href="/CursosLibres/presentation/administrador/showgru?id=<%=c.getId()%>">
+                                <img src="/CursosLibres/presentation/curso/image?nombre=<%=c.getNombre()%>"> 
+                            </a>
+                        </div>
                     </div>
                 <%}%>
             <% } %>
@@ -44,7 +46,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
         <div>
             <h3> 
                 Escriba aquí el nombre del curso que desea buscar: 
-                <input  type="text" name="buscar" value=" "></input>
+                <input  type="text" name="buscar" value=""></input>
                 <input type="submit" value="Buscar" class="boton"></input>
             </h3>
         </div>
