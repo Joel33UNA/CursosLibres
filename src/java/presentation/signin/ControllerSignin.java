@@ -41,6 +41,14 @@ public class ControllerSignin extends HttpServlet {
     
     private String showAction(HttpServletRequest request, String rol){
         ModelSignin model = (ModelSignin)request.getAttribute("model");
+        Map<String, String> gru = new HashMap<>();
+        String idGru = request.getParameter("gru");
+        if (gru != null){ 
+            if(gru.equals("null") == false){
+                gru.put("gru", idGru);
+            }
+        }
+        request.setAttribute("gru", gru);
         model.getUsuario().setId("");
         model.getUsuario().setNombre("");
         model.getUsuario().setCorreo("");
@@ -94,14 +102,31 @@ public class ControllerSignin extends HttpServlet {
     
     private String signinBD(HttpServletRequest request, String rol){
         ModelSignin model = (ModelSignin)request.getAttribute("model");
+        Map<String, String> gru = new HashMap<>();
+        Map<String, String> pass = new HashMap<>();
+        String idGru = request.getParameter("gru");
+        if(idGru != null){
+            if(idGru.equals("null") == false){
+                gru.put("gru", idGru);
+                pass.put("password", model.getUsuario().getClave()); 
+            }
+        }
+ 
+        request.setAttribute("gru", gru);
         try{
             Usuario usuario = model.getUsuario();
             if (!this.validarCredenciales(usuario)){
                 throw new Exception();
             }
             logic.Service.instancia().insertarUsuario(usuario);
-            if (rol.equals("estudiante"))
+            if (rol.equals("estudiante")){
+                if(idGru != null){ 
+                    if(idGru.equals("null") == false){
+                        return "/presentation/login/show?gru=" + idGru;
+                    }
+                }
                 return "/presentation/signin/show";
+            }
             else return "/presentation/signin/showprof";
         }
         catch(Exception e){

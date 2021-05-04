@@ -152,6 +152,9 @@ public class ControllerCurso extends HttpServlet {
         if(request.getParameter("precio").isEmpty() || !request.getParameter("precio").matches("[+-]?\\d*(\\.\\d+)?")){
             errores.put("precio", "El precio es inválido");
         }
+        if(request.getParameter("imagen").isEmpty()){
+            errores.put("imagen", "No se insertó imagen");
+        }
         return errores;
     }
     

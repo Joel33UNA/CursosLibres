@@ -116,7 +116,7 @@ public class ControllerGrupoEst extends HttpServlet {
             model.setGrEsts(logic.Service.instancia().buscarGrupoEst(idEstudiante));
             PdfDocument pdf = new PdfDocument(new PdfWriter(response.getOutputStream()));
             Document document = new Document(pdf, PageSize.A4.rotate());
-            PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA); 
+            PdfFont font = PdfFontFactory.createFont(StandardFonts.TIMES_BOLDITALIC); 
             document.setMargins(20, 20, 20, 20);
             ImageData data = ImageDataFactory.create("C:/imagenesProyecto/logo.jpg"); 
             Image img = new Image(data); 

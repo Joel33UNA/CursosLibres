@@ -65,6 +65,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                     <h3 class="errores"><%=title("tematica", errores)%></h3>
                     <h3 class="errores"><%=title("estatus", errores)%></h3>
                     <h3 class="errores"><%=title("precio", errores)%></h3>
+                    <h3 class="errores"><%=title("imagen", errores)%></h3>
                </div>
             <% } %>
         <%@ include file="/presentation/footer.jsp" %>

@@ -14,6 +14,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <% ModelSignin model = (ModelSignin)request.getAttribute("model"); %>
 <% Map<String, String[]> form = (errores==null)?this.getForm(model):request.getParameterMap();%>
 <% Map<String, String> pass = (Map<String, String>)request.getAttribute("password"); %>
+<% Map<String, String> gru = (Map<String, String>)request.getAttribute("gru"); %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,7 +27,19 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     </head>
     <body>
         <%@ include file="/presentation/header.jsp" %>
-        <form class ="formulario" action="/CursosLibres/presentation/signin/signin" method="post">
+        <form class ="formulario" 
+            <% if(gru == null){ %>
+                action="/CursosLibres/presentation/signin/signin"
+            <% } %>
+            <% if(gru != null){ %>
+                <% if(gru.equals("null") == true){ %>
+                    action="/CursosLibres/presentation/signin/signin"
+                <% } %>
+                <% if(gru.equals("null") == false){ %>
+                    action="/CursosLibres/presentation/signin/signin?gru=<%=gru.get("gru")%>"
+                <% } %>
+            <% } %>
+              method="post">
             <h2>Registrarse</h2>
             <div class="sesion">
                 <div class="id">

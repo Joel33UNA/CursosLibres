@@ -24,11 +24,7 @@ h2{
 .errores{
     text-align: center;
     color: black;
-    font-size: 20px;
-}
-
-table{
-    
+    font-size: 25px;
 }
 
 .formulario{
@@ -77,7 +73,7 @@ input[type = "text"], input[type = "password"]{
 }
 
 input.invalido{
-    border: 3px solid #FC6544;
+    border: 3px solid #FF0000;
 }
 
 .sesion > div{

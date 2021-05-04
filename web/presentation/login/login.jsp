@@ -14,6 +14,7 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
 <% ModelLogin model = (ModelLogin)request.getAttribute("model"); %>
 <% Map<String,String[]> form = (errores==null)?this.getForm(model):request.getParameterMap();%>
 <% Map<String, String> gru = (Map<String, String>)request.getAttribute("gru"); %>
+<% Map<String, String> pass = (Map<String, String>)request.getAttribute("password"); %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -29,12 +30,14 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
     <body>
         <%@ include file="/presentation/header.jsp" %>
         <form class="formulario"
-              <% if(gru == null){ %>
+            <% if(gru == null){ %>
                 action="/CursosLibres/presentation/login/login"
-              <% } %>
-              <% if(gru != null){ %>
-                action="/CursosLibres/presentation/login/login?gru=<%=gru.get("gru")%>"
-              <%}%>
+            <% } %>
+            <% if(gru != null){ %>
+                <% if(gru.equals("null") == false){ %>
+                    action="/CursosLibres/presentation/login/login?gru=<%=gru.get("gru")%>"
+                <% } %>
+            <%}%>
               method="post">
             <h2>Iniciar sesión</h2>
             <div class="sesion">
@@ -51,13 +54,23 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                            value="<%=form.get("password")[0]%>" title="<%=title("password", errores)%>"></input>
                 </div>
                 <div class="signin">
-                    <p>¿No tenés cuenta aún? <a href="/CursosLibres/presentation/signin/show">registrate aquí</a>.</p>
+                    <p>¿No tenés cuenta aún?
+                    <% if(gru == null){ %>
+                         <a href="/CursosLibres/presentation/signin/show">registrate aquí</a>
+                    <% } %>
+                    <% if(gru != null){ %>
+                    <a href="/CursosLibres/presentation/signin/show?gru=<%=gru.get("gru")%>">registrate aquí</a>
+                    <% } %>
+                    .</p>
                 </div>
                 <div>
                     <input type="submit" value="Iniciar Sesión" class="boton"></input>
                 </div>
             </div>
         </form>
+        <% if (pass != null && errores == null){ %>
+            <div><h3 class="password">Su nueva contraseña es: <%=pass.get("password")%></h3>
+        <% } %>
         <%@ include file="/presentation/footer.jsp" %>
     </body>
 </html>
