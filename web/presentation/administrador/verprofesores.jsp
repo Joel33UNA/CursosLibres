@@ -25,14 +25,14 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
             <div>
                 <h1>¡Aquí los profesores disponibles!</h1>
                 <h2>
-                    Si desea matricular los profesores, haga clic <a href="/CursosLibres/presentation/administrador/showprof">aquí</a>.
+                    Si desea registrar los profesores, haga clic <a href="/CursosLibres/presentation/administrador/showprof">aquí</a>.
                 </h2>
             </div>
             <div>
                 <table border>
                     <thead>
                         <tr >
-                            <th>ID</th> <th>Nombre</th> <th>Clave</th> <th>Correo</th> <th>Teléfono</th>
+                            <th>ID</th> <th>Nombre</th> <th>Correo</th> <th>Teléfono</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,7 +40,6 @@ PROFESOR: JOSE SÁNCHEZ SALAZAR
                             <tr>
                                 <td> <%= p.getId() %> </td>
                                 <td> <%= p.getNombre() %></td>
-                                <td> <%= p.getClave()%></td>
                                 <td> <%= p.getCorreo()%></td>
                                 <td> <%= p.getTelefono()%></td>
                             </tr>

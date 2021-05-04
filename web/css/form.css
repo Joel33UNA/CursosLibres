@@ -23,7 +23,12 @@ h2{
 
 .errores{
     text-align: center;
-    color: #FC6544;
+    color: black;
+    font-size: 20px;
+}
+
+table{
+    
 }
 
 .formulario{
